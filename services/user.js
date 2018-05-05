@@ -181,7 +181,7 @@ function loginByWeixin() {
 function checkLogin() {
   return new Promise(function (resolve, reject) {
     console.log(wx.getStorageSync('userInfo'));
-    if (wx.getStorageSync('userInfo')) {
+    if (wx.getStorageSync('userInfo')!=null) {
       checkSession().then(() => {
         resolve(true);
       }).catch(() => {

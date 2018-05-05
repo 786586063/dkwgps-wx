@@ -8,12 +8,40 @@ Page({
     username: '',
     password: '',
     code: '',
-    loginErrorCount: 0
+    loginErrorCount: 0,
+    remeber_pic:'/static/images/select_gray_30px.png',
+    remeber_pic_pwd: '/static/images/select_gray_30px.png',
+    open_pwd_pic:'/static/images/eyes_locked.png',
+    rember_username:false,
+    rember_password:false,
+    pwd:true
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     // 页面渲染完成
-    
+    console.log(wx.getStorageSync("username"));
+    var that = this;
+    if(wx.getStorageSync("username")!=null){
+      that.setData({
+        username: wx.getStorageSync("username")
+      });
+    }
+    console.log(wx.getStorageSync("password"));
+    if (wx.getStorageSync("password")!=null){
+      that.setData({
+        password: wx.getStorageSync("password")
+      });
+    }
+    if (wx.getStorageSync("rember_username")){
+      that.setData({
+        remeber_pic: '/static/images/select_blue_30px.png'
+      });
+    }
+    if (wx.getStorageSync("rember_password")) {
+      that.setData({
+        remeber_pic_pwd: '/static/images/select_blue_30px.png'
+      });
+    }
 
   },
   onReady: function () {
@@ -65,7 +93,12 @@ Page({
       });
       return false;
     }
-
+    if (that.data.rember_username) {
+      wx.setStorageSync("username", that.data.username)
+    }
+    if (this.data.rember_password) {
+      wx.setStorageSync("password", that.data.password)
+    }
     wx.request({
       url: api.LoginUrl,
       data: {
@@ -87,6 +120,8 @@ Page({
           app.globalData.hasLogin = true;
           wx.setStorageSync('userInfo', res.data.datas);
           wx.setStorageSync('haslogin', true);
+          var is =wx.getStorageInfoSync('userinfo')!=null;
+          console.log(is);
           //登录成功，跳转至首页
           wx.navigateTo({
             url: '../../index/index',
@@ -108,12 +143,18 @@ Page({
     this.setData({
       username: e.detail.value
     });
+    // if(this.data.rember_username){
+    //   wx.setStorageSync("username", e.detail.value)
+    // }
   },
   bindPasswordInput: function (e) {
 
     this.setData({
       password: e.detail.value
     });
+    // if (this.data.rember_password) {
+    //   wx.setStorageSync("password", e.detail.value)
+    // }
   },
   bindCodeInput: function (e) {
 
@@ -138,6 +179,62 @@ Page({
           code: ''
         });
         break;
+    }
+  },
+  remeberusername:function(){
+    var that = this;
+    if (that.data.remeber_pic == '/static/images/select_blue_30px.png'){
+      that.setData({
+        remeber_pic: '/static/images/select_gray_30px.png',
+        rember_username:false
+      })
+      wx.setStorageSync("rember_username", false)
+      wx.removeStorageSync("username")
+    } else { //记住账号
+      that.setData({
+        remeber_pic: '/static/images/select_blue_30px.png',
+        rember_username: true
+      })
+      wx.setStorageSync("rember_username", true)
+      console.log("记住账号")
+    }
+   
+  },
+  remeberpwd: function () {
+    var that = this;
+    if (that.data.remeber_pic_pwd == '/static/images/select_blue_30px.png') {
+      that.setData({
+        remeber_pic_pwd: '/static/images/select_gray_30px.png',
+        rember_password:false
+      })
+      wx.setStorageSync("rember_password", false)
+      
+      wx.removeStorageSync("password")
+    } else { //记住密码
+      that.setData({
+        remeber_pic_pwd: '/static/images/select_blue_30px.png',
+        rember_password: true
+      })
+      wx.setStorageSync("rember_password", true)
+      
+      console.log("记住密码")
+    }
+
+  },
+  openpwd:function(){
+    var that = this;
+    if (that.data.open_pwd_pic == '/static/images/eyes_locked.png') {
+      that.setData({
+        open_pwd_pic: '/static/images/eyes_btn.png',
+        pwd:false
+      })
+     
+    }else{
+      that.setData({
+        open_pwd_pic: '/static/images/eyes_locked.png',
+        pwd:true
+
+      })
     }
   }
 })

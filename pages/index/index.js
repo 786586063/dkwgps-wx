@@ -24,17 +24,20 @@ Page({
       console.log("已登录")
 
     }).catch(() => {
-      console.log("未登录")
-      wx.showToast({
-        title: '检测到您未登录，正在跳转至登录界面，请稍等。。。',
-        icon: 'none',
-        duration: 2000
-      })
-      setTimeout(function () {
-        wx.navigateTo({
-          url: '../auth/login/login',
+      if (wx.getStorageInfoSync('userinfo') == null){
+        console.log("未登录")
+        wx.showToast({
+          title: '检测到您未登录，正在跳转至登录界面，请稍等。。。',
+          icon: 'none',
+          duration: 2000
         })
-      }, 2000)
+        setTimeout(function () {
+          wx.navigateTo({
+            url: '../auth/login/login',
+          })
+        }, 2000)
+      }
+     
 
     });
   

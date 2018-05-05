@@ -1,89 +1,147 @@
-.form-box{
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    padding: 0 40rpx;
-    margin-top: 96rpx;
-    background: #fff;
+.container {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
-.form-item{
-    position: relative;
-    background: #fff;
-    height: 96rpx;
-    border-bottom: 1px solid #d9d9d9;
+.form-logo {
+  display: flex;
+  flex-direction: row;
+  margin-top: 50rpx;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
 }
 
-.form-item .username, .form-item .password, .form-item .code{
-    position: absolute;
-    top: 26rpx;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 44rpx;
-    background: #fff;
-    color: #333;
-    font-size: 30rpx;
+.logo {
+  /* position: relative;
+  top: 98rpx;
+  left: 260rpx; *//* display: flex;
+  align-items: center; */
+  width: 150rpx;
+  height: 150rpx;
+  margin-bottom: 56rpx;
 }
 
-.form-item-code{
-    margin-top:32rpx;
-    height: auto;
-    overflow: hidden;
-    width: 100%;
+.form-header {
+  width: 100%;
+  height: 120rpx;
+  overflow: hidden;
+  /* margin-top: 50rpx; *//* background: #000; */
 }
 
-.form-item-code .form-item{
-    float: left;
-    width: 350rpx;
+.company {
+  position: relative;
+  top: 67rpx;
+  left: 30rpx;
+  font-size: 14pt;
 }
 
-.form-item-code .code-img{
-    float: right;
-    margin-top: 4rpx;
-    height: 88rpx;
-    width: 236rpx;
+.form-box {
+  display: flex;
+  flex-direction: row;
+  height: 80rpx;
+  background: #efeff4;
+  border-radius: 10rpx;
+  align-items: center;
+  margin: 20rpx 65rpx;
+}
+.form-item {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+ 
 }
 
-.form-item .clear{
-    position: absolute;
-    top: 26rpx;
-    right: 18rpx;
-    z-index: 2;
-    display: block;
-    background: #fff;
-    height: 44rpx;
-    width: 44rpx;
+.form-item image {
+  height: 42rpx;
+  width: 42rpx;
+  align-self: center;
+  margin-left: 10rpx;
+  margin-right: 20rpx;
 }
 
-.login-btn{
-    margin: 60rpx 0 40rpx 0;
-    height: 96rpx;
-    line-height: 96rpx;
-    color: #fff;
-    font-size: 30rpx;
-    width: 100%;
-    background: #b4282d;
-    border-radius: 6rpx;
+.form-item input {
+  flex: 1;
+  font-size: 30rpx;
+  color: #999999;
+}
+.remind{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10rpx;
+  /* margin-bottom: 40rpx; */
+  margin-left: 65rpx;
+  margin-right: 65rpx;
+}
+.remind .remind-username ,.remind .remind-pwd {
+  display: flex;
+  flex-direction: row;
+ 
+   /* justify-content: stretch;
+  align-self: flex-end;  */
+
+}
+.remind .remind-center{
+  display: flex;
+  flex: 1;
+}
+.remind .remind-username image, .remind .remind-pwd image{
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 10rpx;
+}
+.btn-login{
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+ 
+   background: #48A6FE; 
+   
+}
+.btn-login .btn-text{
+  display: flex;
+  color: #fff;
+  font-size: 30rpx;
+}
+.form-middle{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 54rpx;
+}
+.form-middle .quick-warp{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.form-item-text{
-    height: 35rpx;
-    width: 100%;
+.form-middle .quick-warp .quick_login{  
+  color: #999999;
+  font-size: 30rpx;
 }
-
-.form-item-text .register{
-    display: block;
-    height: 34rpx;
-    float: left;
-    font-size: 28rpx;
-    color: #999;
+.form-quick-btn image{
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+ justify-content: center;
+  
 }
-
-.form-item-text .reset{
-    display: block;
-    height: 34rpx;
-    float: right;
-    font-size: 28rpx;
-    color: #999;
+.form-quick-btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 40rpx;
+}
+.form-bottom image{
+  width: 100%;
+  height: 223rpx;
 }
