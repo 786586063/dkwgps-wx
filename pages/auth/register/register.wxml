@@ -1,11 +1,35 @@
 <view class="container">
-  <view class="form-box">
+  <view class='header'>
+    <image src='/static/images/left_30px.png'></image>
+    <text class='nav'>注册</text>
+  </view>
+   <view class='form-logo'>
+    <image class='logo' src='/static/images/app_blue_48px.png'></image>
+  </view>
 
-    <!-- <view class="form-item">
-    		<input class="username" value="{{username}}" bindinput="bindUsernameInput" placeholder="用户名" auto-focus/>
-    		<image wx:if="{{ username.length > 0 }}" id="clear-username" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
-    	</view> -->
+  <view class='form-box'>
+    <view class='form-item'>
+      <image src='/static/images/user_50px.png' />
+      <input  placeholder='请输入手机号'></input>
+     
+    </view>
+  </view>
 
+  <view class='view-yzm'>
+    <view class='yzm-item'>
+      <image src='/static/images/user_50px.png' />
+      <input   placeholder='验证码'></input>
+     </view>
+     <view class='yam-btn'>
+      <button>
+        <text style='color:#ffffff'>获取验证码</text>
+      </button>
+     </view>
+  </view>
+      
+        <!-- <view class="form-box">>
+    
+  <!-- <view class="form-box">
 
 
     <view class="form-item">
@@ -34,5 +58,5 @@
     </view>
     <button type="default" class="register-btn" bindtap="enterNext">注册</button>
 
-  </view>
+  </view> -->
 </view>

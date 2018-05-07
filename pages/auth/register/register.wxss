@@ -1,68 +1,115 @@
-.form-box{
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    padding: 0 40rpx;
-    margin-top: 96rpx;
-    background: #fff;
+.container {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
-.form-item{
-    position: relative;
-    background: #fff;
-    height: 96rpx;
-    border-bottom: 1px solid #d9d9d9;
+
+.header{
+  display: flex;
+  flex-direction: row;
+  height: 128rpx;
+  background:#48A6FE; 
+  align-items: flex-end;
+  padding-left: 30rpx;
+ 
+}
+.header image{
+  display: flex;
+  height: 30rpx;
+  width: 30rpx;
+  margin-right: 20rpx;
+  margin-bottom: 29rpx;
+}
+.header text{
+  color: #ffffff;
+  font-size: 34rpx;
+   margin-bottom: 20rpx;
+}
+.form-logo {
+  display: flex;
+  flex-direction: row;
+  margin-top: 50rpx;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+}
+.logo {
+  /* position: relative;
+  top: 98rpx;
+  left: 260rpx; *//* display: flex;
+  align-items: center; */
+  width: 150rpx;
+  height: 150rpx;
+  margin-bottom: 56rpx;
+}
+.form-box {
+  display: flex;
+  flex-direction: row;
+  height: 80rpx;
+  background: #efeff4;
+  border-radius: 10rpx;
+  align-items: center;
+  margin: 20rpx 65rpx;
+}
+.form-item {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+ 
 }
 
-.form-item .username, .form-item .password, .form-item .mobile, .form-item .code{
-    position: absolute;
-    top: 26rpx;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 44rpx;
-    background: #fff;
-    color: #333;
-    font-size: 30rpx;
+.form-item image {
+  height: 42rpx;
+  width: 42rpx;
+  align-self: center;
+  margin-left: 10rpx;
+  margin-right: 20rpx;
 }
 
-.form-item-code{
-    margin-top:32rpx;
-    height: auto;
-    overflow: hidden;
-    width: 100%;
+.form-item input {
+  flex: 1;
+  font-size: 30rpx;
+  color: #999999;
+}
+.view-yzm{
+  display: flex;
+  flex-direction: row;
+   height: 80rpx;
+  justify-content: space-between;
+  border-radius: 10rpx;
+  align-items: center;
+  margin: 20rpx 65rpx;
+}
+.view-yzm .yzm-item{
+  display: flex;
+  width: 50%;
+  flex: 1;
+  height: 100%;
+  justify-content: space-between;
+   background: #efeff4;
+  flex-direction: row;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+  align-items: center;
 }
 
-.form-item-code .form-item{
-    float: left;
-    width: 350rpx;
+.yzm-item image {
+height: 50rpx;
+  width: 50rpx;
+  align-self: center;
+  margin-left: 30rpx;
+  margin-right: 20rpx;
 }
-
-.form-item-code .code-btn{
-    float: right;
-    padding: 20rpx 40rpx;
-    border: 1px solid #d9d9d9;
-    border-radius: 10rpx;
+.yzm-item input{
+  font-size: 30rpx;
 }
-
-.form-item .clear{
-    position: absolute;
-    top: 26rpx;
-    right: 18rpx;
-    z-index: 2;
-    display: block;
-    background: #fff;
-    height: 44rpx;
-    width: 44rpx;
-}
-
-.register-btn{
-    margin: 60rpx 0 40rpx 0;
-    height: 96rpx;
-    line-height: 96rpx;
-    color: #fff;
-    font-size: 30rpx;
-    width: 100%;
-    background: #b4282d;
-    border-radius: 6rpx;
+.yam-btn button{
+   background:#48A6FE; 
+   
 }
