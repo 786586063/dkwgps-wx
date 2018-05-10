@@ -7,8 +7,8 @@ var app = getApp();
 Page({
   data: {
     username: '',
-    password: '',
-    confirmPassword: '',
+    password: '123456',
+    confirmPassword: '123456',
     mobile: '',
     code: '',
     daojishi:'获取验证码',

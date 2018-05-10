@@ -1,23 +1,19 @@
 {
   "pages": [
-    "pages/auth/register/register",
-    "pages/auth/login/login",
     "pages/index/index",
-   
-    
-    "pages/auth/reset/reset"
-    
+    "pages/auth/login/login",
+    "pages/auth/register/register",
+    "pages/auth/normalregister/normalregister",
+    "pages/auth/reset/reset",
+    "pages/wealfare/wealfare",
+    "pages/rechargerecord/rechargerecord"
   ],
   "window": {
-  "navigationBarTitleText": "小程序商城",
-  "navigationBarTextStyle": "black",
-  "navigationBarBackgroundColor": "#aa154e",
-  "enablePullDownRefresh": true,
-  "backgroundColor": "#aa154e",
-  "backgroundTextStyle": "dark",
-
-  "navigationStyle": "custom"
-    
-
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#aa154e",
+    "backgroundColor": "#aa154e",
+    "backgroundTextStyle": "dark",
+    "navigationStyle": "custom"
   }
 }

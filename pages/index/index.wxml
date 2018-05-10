@@ -1,79 +1,153 @@
-<view class="page" bindtouchend='touchend' bindtouchstart='touchstart'>
+<!-- bindtouchend='touchend' bindtouchstart='touchstart' -->
+<view class="page" >
   <!-- 侧滑栏 -->
-  <view class="page_tab">
-    <block wx:if="{{user_name ===''}}">
-      <navigator url='../login/login'>
-        <image class='user_head' src='../../image/user_head.png'></image>
-        <view class='user_name'>未登录</view>
-      </navigator>
-    </block>
-    <block wx:else>
-      <image class='user_head' src='{{user_head}}'></image>
-      <view class='user_name'>{{user_name}}</view>
-    </block>
-    <view class="page_tab_content">
-      <navigator url='../order/order'>
-        <view class="wc">
-          <image src='../../image/indent.png'></image>
-          <text>订单记录</text>
-        </view>
-      </navigator>
-      <view class="wc">
-        <image src='../../image/my_profile.png'></image>
-        <text bindtap='tosat'>我的资料</text>
-      </view>
-      <view class="wc">
-        <view style='position:absolute;opacity: 0;   top: 10px; '>
-          <contact-button size="27" class='pos'></contact-button>
-          <contact-button size="27" class='pos'></contact-button>
-          <contact-button size="27" class='pos'></contact-button>
-          <contact-button size="27" class='pos'></contact-button>
-          <contact-button size="27" class='pos'></contact-button>
-          <contact-button size="27" class='pos'></contact-button>
-          <contact-button size="27" class='pos'></contact-button>
-          <contact-button size="27" class='pos'></contact-button>
-          <contact-button size="27" class='pos'></contact-button>
-          <contact-button size="27" class='pos'></contact-button>
-          <contact-button size="27" class='pos'></contact-button>
-          <contact-button size="27" class='pos'></contact-button>
-          <contact-button size="27" class='pos'></contact-button>
-        </view>
-        <image src='../../image/customer_service.png'></image>
-        <text>客服中心</text>
-      </view>
-      <navigator url='../news/news'>
-        <view class="wc">
-          <image src='../../image/platform_consulting.png'></image>
-          <text>平台资讯</text>
-        </view>
-      </navigator>
-      <navigator url='../to_my/to_my'>
-        <view class="wc">
-          <image src='../../image/platform_consulting.png'></image>
-          <text>关于我们</text>
-        </view>
-      </navigator>
-      <navigator url='my_dz/my_dz'>
-        <view class="wc">
-          <image src='../../image/my_address.png'></image>
-          <text>我的地址</text>
-        </view>
-      </navigator>
-      <button wx:if="{{btn_val != '登录'}}" catchtap='register'>{{btn_val}}</button>
-      <button wx:else catchtap='register'>{{btn_val}}</button>
+ <view class="page_tab" style="width: {{ui.menuWidth}}px">
+    <view class='drawer-header-bg'>
+      <image src='{{useravr}}'></image>
+      <text>{{usernike}}</text>
     </view>
+    <view class='drawer-content'>
+      <navigator url='../rechargerecord/rechargerecord'>
+        <view class='content-row'>
+          <view class='row-detail'>
+            <image src='../../static/images/Recharge1_48px.png'></image>
+            <text>充值记录</text>
+          </view>
+          <view class='row-right'>
+            <image src='../../static/images/right_30px.png'></image>
+          </view>
+        </view>
+      </navigator>
+      <navigator url='../wealfare/wealfare'>
+        <view class='content-row'>
+          <view class='row-detail'>
+            <image src='../../static/images/work_48px.png'></image>
+            <text>福利中心</text>
+          </view>
+          <view class='row-right'>
+            <image src='../../static/images/right_30px.png'></image>
+          </view>
+        </view>
+      </navigator>
+      <navigator url='../auth/reset/reset'>
+       <view class='content-row'>
+          <view class='row-detail'>
+            <image src='../../static/images/lockopened_48px.png'></image>
+            <text>修改密码</text>
+          </view>
+          <view class='row-right'>
+            <image src='../../static/images/right_30px.png'></image>
+          </view>
+        </view>
+      </navigator>
+       <view class='content-row' bindtap='appfx'>
+        <view class='row-detail'>
+          <image src='../../static/images/share_48px.png'></image>
+          <text>app分享</text>
+        </view>
+        <view class='row-right'>
+          <image src='{{fximage}}'></image>
+        </view>
+      </view>
+       <view class='content-row' style='padding-left:64rpx;padding-right:64rpx;display:{{fxIsOpen}}'>
+          <view class='fx-image'>
+             <image src='../../static/images/qq_48px.png'></image>
+            <image src='../../static/images/wechat_48px.png'></image>
+            <image src='../../static/images/friends_48px.png'></image>
+            <image src='../../static/images/blog_48px.png'></image>
+          </view>
+         
+      </view>
+      <button class='btn-switch-user'>
+        <image src='../../static/images/changeuser_48px.png'></image> 
+        <text>切换用户</text>
+      </button>
+    </view>
+    
   </view>
   <view class="bg" bindtap='hideview' style='display:{{display}}'></view>
   <!-- 主页 -->
-  <view class="home" style="{{translate}}">
-    <view class='page-row'>
-      <image class='icon_user' bindtap='showview' src="../../static/images/ic_menu_me_pressed.png"></image>
+ <view class="home {{!ui.tStart? 'withAnimate': ''}}" style="left:{{ui.offsetLeft}}px;width: {{ui.windowWidth}}px" bindtap="handlerPageTap">
+    <view class='header'>
 
-      <!-- <text> 运输机械</text> -->
-      <text class='terName'> 我的机型</text>
+      <text class='nav'>伴车星</text>
+    </view>
+    <view class='page-row-header'>
+      <image class='icon_user' catchtap='handlerAvatarTap' src="../../static/images/per_whight_30px.png"></image>
+      <view class='ter_name'>
+        <text class='terName' style='color:#ffffff;font-size:30rpx;'> 我的机型</text>
+      </view>
+      <image class='icon_user' bindtap='' src="../../static/images/scanning_whight_30px.png"></image>
+
     </view>
 
-    <!-- 主页tab -->
+    <view class='mapcontrainer'>
+      <view class='map'>
+        <map
+          id="myMap"
+          style="width: 100%; height: 1200rpx;" show-location 
+        ></map>
+      </view>
+    </view>
+
+    <view class='contrainer-message'>
+      <image class='news_btn' src='../../static/images/news_btn.png'></image>
+      <!-- <view class='kong'></view> -->
+      <image class='mapswitch_btn' src='../../static/images/mapswitch_btn.png'></image>
+    </view>
+    <view class='middel_btn'>
+      <image class='one' src='../../static/images/Setup_btn.png'></image>
+      <image class='one' src='../../static/images/details_btn.png'></image>
+      <image class='one' src='../../static/images/Navigation_btn.png'></image>
+      <image class='one' src='../../static/images/more_btn.png'></image>
+    </view>
+
+  
+    <view style='clear:both'></view>
+    <view class='shrik_btn'>
+      <image class='one' src='../../static/images/narrow2_btn.png'></image>
+      <image class='one' src='../../static/images/up_btn.png' style='margin-top:20rpx'></image>
+      <image class='one' src='../../static/images/down_btn.png'></image>
+    </view>
+    <view style='clear:both'></view>
+    <view class='location-now'>
+       <image class='one' src='../../static/images/eyes_btn.png'></image>
+      <image class='one' src='../../static/images/location1_btn.png'></image>
+    </view>
+
+     <view class='ter-list'>
+       <image class='one' src='../../static/images/carchoose_btn.png'></image>
+      
+    </view>
+
+    <view class='infomation'>
+      <view class='left'>
+        <view class='info-row'>
+        <view class='status'>
+          <image src='../../static/images/Informationhints_30px.png' class='info-image'></image>
+          <text class='info-text'>离线XX天XX时XX分</text>
+        </view>
+        <view class='voil'>
+          <image src='../../static/images/power_30px.png' class='info-image'></image>
+          <text class='info-text'>电量 50%</text>
+        </view>
+      </view>
+      <view class='info-row'>
+        <image src='../../static/images/time_green_30px.png'class='info-image'></image>
+        <text class='info-text'>时间2018年5月7日16:48:00（卫星定位）</text>
+      </view>
+      <view class='info-row'>
+        <image src='../../static/images/seat_blue_48px.png'class='info-image'></image>
+        <text class='info-text'>宁波市鄞州区四明中路，离博瑞兰特文化教育中心联盟约73米</text>
+      </view>
+      </view>
+      <view class='right'>
+        <image src='../../static/images/playback_66px.png'></image>
+      </view>
+      
+      
+    </view>
+
 
   </view>
 </view>

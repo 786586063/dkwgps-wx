@@ -19,5 +19,6 @@ module.exports = {
     LoginUrl: WxApiRoot + 'Login/userLogin', //登录接口
     AuthLoginByWeixin: WxApiRoot +'Login/getVipByWeiXin',//获取微信openid
     UserRegisterFastYZM:WxApiRoot +'Login/userRegisterFastYZM',
-    AuthRegister : WxApiRoot +"Login/userRegisterFast"
+    AuthRegister : WxApiRoot +"Login/userRegisterFast",
+    AuthNormalRegister: WxApiRoot + "Login/userRegister"
 };

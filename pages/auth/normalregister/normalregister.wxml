@@ -1,0 +1,33 @@
+<view class="container">
+  <view class='header'>
+    <image src='/static/images/left_30px.png'></image>
+    <text class='nav'>注册</text>
+  </view>
+
+  <view class='form-box'>
+    <view class='form-item'>
+      <input class="username" value="{{username}}" bindinput="bindUsernameInput" placeholder='账号名称：2-16位字母，数字和汉字的组合'></input>
+    </view>
+  </view>
+   <view class='form-box'>
+    <view class='form-item'>
+      <input class="pwd" value="{{pwd}}" bindinput="bindPwdInput" password='true' placeholder='账号密码：5-10位字母，数字组合'></input>
+    </view>
+  </view>
+   <view class='form-box'>
+    <view class='form-item'>
+      <input class="confirmpwd" value="{{confirmpwd}}" bindinput="bindConfirmPwdInput" password='true' placeholder='确认密码：请重新输入密码'></input>
+    </view>
+  </view>
+   <view class='form-box'>
+    <view class='form-item'>
+      <input class="mobile" value="{{mobile}}" bindinput="bindMobileInput" placeholder='手机号码：便于通知联系及密码找回'></input>
+    </view>
+  </view>
+
+  <view class='form-box'>
+    <button class='btn-login' bindtap="register">
+      <text class='btn-text'>注册</text>
+    </button>
+  </view>
+</view>

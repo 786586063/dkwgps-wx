@@ -10,7 +10,7 @@
   <view class='form-box'>
     <view class='form-item'>
       <image src='/static/images/user_50px.png' />
-      <input  placeholder='请输入手机号'></input>
+      <input value="{{mobile}}" bindinput="bindMobileInput" placeholder='请输入手机号'></input>
      
     </view>
   </view>
@@ -18,13 +18,37 @@
   <view class='view-yzm'>
     <view class='yzm-item'>
       <image src='/static/images/user_50px.png' />
-      <input   placeholder='验证码'></input>
+      <input class="code" value="{{code}}" bindinput="bindCodeInput"  placeholder='验证码'></input>
      </view>
      <view class='yam-btn'>
-      <button>
-        <text style='color:#ffffff'>获取验证码</text>
+       <button disabled='{{disabled}}' data-id="2" bindtap="sendCode">
+        <text style='color:#ffffff'>{{time}}</text>
       </button>
      </view>
+  </view>
+
+   <view class='form-box'>
+    <button class='btn-login' bindtap="enterNext">
+      <text class='btn-text'>下一步</text>
+    </button>
+  </view>
+  <view class='remind'>
+    <view class='remind-username'>
+      <navigator url="/pages/auth/normalregister/normalregister" class="register">
+        <text class='register'  style='color:#999999'>常规注册</text>
+        
+      </navigator>
+
+
+    </view>
+    <view class='remind-center'>
+
+    </view>
+    <view class='remind-pwd'>
+      <navigator url="/pages/auth/login/login" style='color:#999999' class="hasaccount">已有账户</navigator>
+      <!-- <text>忘记密码</text> -->
+
+    </view>
   </view>
       
         <!-- <view class="form-box">>
