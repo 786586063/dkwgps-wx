@@ -1,7 +1,7 @@
 <!-- bindtouchend='touchend' bindtouchstart='touchstart' -->
-<view class="page" >
+<view class="page">
   <!-- 侧滑栏 -->
- <view class="page_tab" style="width: {{ui.menuWidth}}px">
+  <view class="page_tab" style="width: {{ui.menuWidth}}px">
     <view class='drawer-header-bg'>
       <image src='{{useravr}}'></image>
       <text>{{usernike}}</text>
@@ -30,7 +30,7 @@
         </view>
       </navigator>
       <navigator url='../auth/reset/reset'>
-       <view class='content-row'>
+        <view class='content-row'>
           <view class='row-detail'>
             <image src='../../static/images/lockopened_48px.png'></image>
             <text>修改密码</text>
@@ -40,7 +40,7 @@
           </view>
         </view>
       </navigator>
-       <view class='content-row' bindtap='appfx'>
+      <view class='content-row' bindtap='appfx'>
         <view class='row-detail'>
           <image src='../../static/images/share_48px.png'></image>
           <text>app分享</text>
@@ -49,25 +49,25 @@
           <image src='{{fximage}}'></image>
         </view>
       </view>
-       <view class='content-row' style='padding-left:64rpx;padding-right:64rpx;display:{{fxIsOpen}}'>
-          <view class='fx-image'>
-             <image src='../../static/images/qq_48px.png'></image>
-            <image src='../../static/images/wechat_48px.png'></image>
-            <image src='../../static/images/friends_48px.png'></image>
-            <image src='../../static/images/blog_48px.png'></image>
-          </view>
-         
+      <view class='content-row' style='padding-left:64rpx;padding-right:64rpx;display:{{fxIsOpen}}'>
+        <view class='fx-image'>
+          <image src='../../static/images/qq_48px.png'></image>
+          <image src='../../static/images/wechat_48px.png'></image>
+          <image src='../../static/images/friends_48px.png'></image>
+          <image src='../../static/images/blog_48px.png'></image>
+        </view>
+
       </view>
       <button class='btn-switch-user'>
-        <image src='../../static/images/changeuser_48px.png'></image> 
+        <image src='../../static/images/changeuser_48px.png'></image>
         <text>切换用户</text>
       </button>
     </view>
-    
+
   </view>
   <view class="bg" bindtap='hideview' style='display:{{display}}'></view>
   <!-- 主页 -->
- <view class="home {{!ui.tStart? 'withAnimate': ''}}" style="left:{{ui.offsetLeft}}px;width: {{ui.windowWidth}}px" bindtap="handlerPageTap">
+  <view class="home {{!ui.tStart? 'withAnimate': ''}}" style="left:{{ui.offsetLeft}}px;width: {{ui.windowWidth}}px" bindtap="handlerPageTap">
     <view class='header'>
 
       <text class='nav'>伴车星</text>
@@ -82,71 +82,78 @@
     </view>
 
     <view class='mapcontrainer'>
-      <view class='map'>
-        <map
-          id="myMap"
-          style="width: 100%; height: 1200rpx;" show-location 
-        ></map>
-      </view>
-    </view>
 
-    <view class='contrainer-message'>
-      <image class='news_btn' src='../../static/images/news_btn.png'></image>
-      <!-- <view class='kong'></view> -->
-      <image class='mapswitch_btn' src='../../static/images/mapswitch_btn.png'></image>
-    </view>
-    <view class='middel_btn'>
-      <image class='one' src='../../static/images/Setup_btn.png'></image>
-      <image class='one' src='../../static/images/details_btn.png'></image>
-      <image class='one' src='../../static/images/Navigation_btn.png'></image>
-      <image class='one' src='../../static/images/more_btn.png'></image>
-    </view>
-
-  
-    <view style='clear:both'></view>
-    <view class='shrik_btn'>
-      <image class='one' src='../../static/images/narrow2_btn.png'></image>
-      <image class='one' src='../../static/images/up_btn.png' style='margin-top:20rpx'></image>
-      <image class='one' src='../../static/images/down_btn.png'></image>
-    </view>
-    <view style='clear:both'></view>
-    <view class='location-now'>
-       <image class='one' src='../../static/images/eyes_btn.png'></image>
-      <image class='one' src='../../static/images/location1_btn.png'></image>
-    </view>
-
-     <view class='ter-list'>
-       <image class='one' src='../../static/images/carchoose_btn.png'></image>
+<!-- style='display:{{display}}' -->
+      <map id="myMap" style="width: 100%; height: 100%;" show-location>
       
+        <!-- <cover-view>
+        </cover-view> -->
+        <cover-view class='contrainer-message'>
+          <cover-image class='news_btn' src='../../static/images/news_btn.png'></cover-image>
+          <!-- <view class='kong'></view> -->
+          
+        </cover-view>
+        <cover-view class='mapswitch'>
+          <cover-image class='mapswitch_btn' src='../../static/images/mapswitch_btn.png'></cover-image>
+        </cover-view>
+        <cover-view class='middel_btn'>
+          <cover-image class='one' src='../../static/images/Setup_btn.png'></cover-image>
+          <cover-image class='one' src='../../static/images/details_btn.png'></cover-image>
+          <cover-image class='one' src='../../static/images/Navigation_btn.png'></cover-image>
+          <cover-image class='one' src='../../static/images/more_btn.png'></cover-image>
+        </cover-view>
+
+
+        <cover-view style='clear:both'></cover-view>
+        <cover-view class='shrik_btn'>
+          <cover-image class='one' src='../../static/images/narrow2_btn.png'></cover-image>
+          <cover-image class='one' src='../../static/images/up_btn.png' style='margin-top:20rpx'></cover-image>
+          <cover-image class='one' src='../../static/images/down_btn.png'></cover-image>
+        </cover-view>
+        <cover-view style='clear:both'></cover-view>
+        <cover-view class='location-now'>
+          <cover-image class='one' src='../../static/images/eyes_btn.png'></cover-image>
+          <cover-image class='one' src='../../static/images/location1_btn.png'></cover-image>
+        </cover-view>
+
+        <cover-view class='ter-list'>
+          <cover-image class='one' src='../../static/images/carchoose_btn.png'></cover-image>
+
+        </cover-view>
+
+        <cover-view class='infomation'>
+          <cover-view class='left'>
+            <cover-view class='info-row'>
+              <cover-view class='status'>
+                <cover-image src='../../static/images/Informationhints_30px.png' class='info-image'></cover-image>
+                <cover-view class='view-text'>离线XX天XX时XX分</cover-view>
+              </cover-view>
+              <cover-view class='voil'>
+                <cover-image src='../../static/images/power_30px.png' class='info-image'></cover-image>
+               <cover-view class='view-text'>电量 50%</cover-view>
+              </cover-view>
+            </cover-view>
+            <cover-view class='info-row'>
+              <cover-image src='../../static/images/time_green_30px.png' class='info-image'></cover-image>
+              <cover-view class='view-text'>时间2018年5月7日16:48:00（卫星定位）</cover-view>
+            </cover-view>
+            <cover-view class='info-row'>
+              <cover-image src='../../static/images/\seat_blue_48px.png' class='info-image'></cover-image>
+              <cover-view class='view-address'>宁波市鄞州区四明中路，离博瑞兰特文化教育中心联盟约73米</cover-view>
+              
+            </cover-view>
+          </cover-view>
+          <cover-view class='right'>
+            <cover-image src='../../static/images/playback_66px.png'></cover-image>
+          </cover-view>
+
+
+        </cover-view>
+        <cover-view class="bg2" bindtap='hideview'style='display:{{display}}' ></cover-view>
+      </map>
     </view>
 
-    <view class='infomation'>
-      <view class='left'>
-        <view class='info-row'>
-        <view class='status'>
-          <image src='../../static/images/Informationhints_30px.png' class='info-image'></image>
-          <text class='info-text'>离线XX天XX时XX分</text>
-        </view>
-        <view class='voil'>
-          <image src='../../static/images/power_30px.png' class='info-image'></image>
-          <text class='info-text'>电量 50%</text>
-        </view>
-      </view>
-      <view class='info-row'>
-        <image src='../../static/images/time_green_30px.png'class='info-image'></image>
-        <text class='info-text'>时间2018年5月7日16:48:00（卫星定位）</text>
-      </view>
-      <view class='info-row'>
-        <image src='../../static/images/seat_blue_48px.png'class='info-image'></image>
-        <text class='info-text'>宁波市鄞州区四明中路，离博瑞兰特文化教育中心联盟约73米</text>
-      </view>
-      </view>
-      <view class='right'>
-        <image src='../../static/images/playback_66px.png'></image>
-      </view>
-      
-      
-    </view>
+
 
 
   </view>

@@ -20,6 +20,7 @@ Page({
       tStart: true
     },
     display:'none',
+    display2: 'block',
     fxIsOpen:'none',
     fximage:'../../static/images/right_30px.png',
     useravr:'../../static/images/Headportrait.png',
@@ -149,7 +150,8 @@ Page({
       ui.tStart = false;
       this.setData({ 
         ui: ui ,
-        display:'block'
+        display:'block',
+        display2: 'none'
         })
     }
   },
@@ -157,8 +159,8 @@ Page({
   // 遮拦  
   hideview: function () {
     this.setData({
-      display: "none"
-
+      display: "none",
+      display2: 'block'
     })
     let { ui } = this.data;
     if (ui.offsetLeft != 0) {
