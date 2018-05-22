@@ -1,0 +1,32 @@
+<view class="container">
+  <view class='header'>
+    <image src='/static/images/left_30px.png'></image>
+    <text class='nav'>添加设备</text>
+  </view>
+  <view class='view-yzm'>
+    <view class='yzm-item'>
+      <image src='/static/images/scanning_blue_30px.png' />
+      <input class="code" bindinput="bindPasswordInput" placeholder='扫一扫添加或者手动输入IMEI编码'></input>
+    </view>
+    <view class='yam-btn'>
+      
+        <image src='/static/images/scanning_btn.png'></image>
+     
+    </view>
+  </view>
+
+  <view class='view-yzm'>
+     <view class='yzm-item'>
+      <image src='/static/images/name_30px.png' />
+      <input class="code" bindinput="" placeholder='请输入设备名称：可用车牌号'></input>
+    </view>
+  </view>
+
+  <view class='view-yzm'>
+    <button class='btn-login' bindtap="">
+      <text class='btn-text'>完成</text>
+    </button>
+  </view>
+
+ 
+</view>

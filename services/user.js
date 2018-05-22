@@ -181,12 +181,19 @@ function loginByWeixin() {
 function checkLogin() {
   return new Promise(function (resolve, reject) {
     console.log(wx.getStorageSync('userInfo'));
-    if (wx.getStorageSync('userInfo')!=null) {
-      checkSession().then(() => {
-        resolve(true);
-      }).catch(() => {
-        reject(false);
-      });
+    if (wx.getStorageSync('userInfo') != null && wx.getStorageSync('userInfo')!='') {
+      // console.log('opend : '+ wx.getStorageSync('openid'));
+      resolve(true);
+      // // if(wx.getStorageSync('openid')!=null){
+      //   checkSession().then(() => {
+      //     resolve(true);
+      //   }).catch(() => {
+      //     reject(false);
+      //   });
+      // }else{
+      //   resolve(true);
+      // }
+      
     } else {
       reject(false);
     }

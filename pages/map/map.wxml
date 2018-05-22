@@ -1,0 +1,15 @@
+<view class="container">
+  <view class='header'>
+    <image src='/static/images/left_30px.png' bindtap='nav_bac'></image>
+    <text class='nav'>{{datas.types}}</text>
+  </view>
+   <map id="map" longitude="{{datas.lon}}" latitude="{{datas.lat}}" scale="16" controls="{{controls}}" markers="{{markers}}" style="width: 100%; height: {{scrollHeight}}px;">
+    <!-- <cover-view class='map_address'>
+      <cover-view class='address_detail'>宁波市鄞州区下应北路.离中国农业银行(潘火支行)(东北)约133米</cover-view>
+    </cover-view> -->
+    <cover-view class="marquee_text" style="{{orientation}}:{{marqueeDistance2}}px;font-size: {{size}}px;">
+      <cover-view >{{datas.address}}</cover-view>
+      <cover-view wx:if="{{marquee2copy_status}}" style="margin-left:{{marquee2_margin}}px;">{{datas.address}}</cover-view>
+    </cover-view>
+   </map>
+</view>

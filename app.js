@@ -23,6 +23,7 @@ App({
   },
   globalData: {
     hasLogin: false,
-    key_words:'&wuliangpsDkw_8675.Zz'
+    key_words:'&wuliangpsDkw_8675.Zz',
+    address:''
   }
 })

@@ -1,0 +1,137 @@
+<view class="container">
+  <!-- <view class='header'>
+    <image src='/static/images/left_30px.png' bindtap='nav_bac'></image>
+    <text class='nav'>消息中心</text>
+  </view> -->
+  <view class='view-yzm'>
+    <view class='yzm-item'>
+      <image src='/static/images/search_gray_30px.png' />
+      <input class="code" bindinput="bindPasswordInput" placeholder='搜索'></input>
+    </view>
+    <view class='yam-btn'>
+      <image src='/static/images/screen_gray_30px.png' data-statu="open" catchtap='powerDrawer'></image>
+    </view>
+  </view>
+
+  <!-- {{scrollHeight}}   catchlongtap='longTap' bindtap='clickItem'--> 
+  <view class='form-box'>
+    <scroll-view scroll-y style="height:1100rpx;" bindscrolltoupper="topLoad" bindscrolltolower="bindDownLoad">
+      <view wx:for="{{allDatas}}" wx:for-index="idx" wx:for-item="item"  data-index="{{idx}}" bindtouchstart="mytouchstart" bindtouchend="mytouchend" bindtap='clickItem'>
+        <view class='form-item'>
+          <view class='form-item-left'>
+            <view class='left-detail'>
+              <text class='text-name'> {{item.title}}</text>
+
+            </view>
+            <view class='left-detail'>
+              <view class='left-detail-detail'>
+                <text class='text-type'> {{item.types}}</text>
+
+              </view>
+              <view class='left-detail-detail'>
+                <text class='text-type'> {{item.addtime}}</text>
+
+              </view>
+            </view>
+            <view class='left-detail'>
+              <text class='text-address'>{{item.address}}</text>
+            </view>
+          </view>
+          <view class='form-item-right'>
+            <image class='right-image' src='{{item.img}}' data-id="{{item.id}}" data-index="{{idx}}" catchtap='delect_one'></image>
+          </view>
+        </view>
+        <view class='kong'></view>
+
+      </view>
+      <view class='pull' hidden="{{hidden}}">
+        <text>{{pull_content}}</text>
+      </view>
+    </scroll-view>
+    <view class='delect-detail' hidden='{{hidden_delect}}'>
+      <button class='btn-delctt-select' catchtap='delect_select'>删除</button>
+      <button class='btn-removall'>清空</button>
+    </view>
+
+  </view>
+
+  <!--mask-->
+  <view class="drawer_screen" catchtap='powerDrawer' data-statu="close" wx:if="{{showModalStatus}}"></view>
+  <!--content-->
+  <!--使用animation属性指定需要执行的动画-->
+  <view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
+
+    <!--drawer content-->
+    <view class="drawer_title">筛选</view>
+    <view class="drawer_content">
+      <checkbox-group bindchange="checkboxChange">
+        <view class='content_row'>
+          <text>震动报警</text>
+          <checkbox value="4"></checkbox>
+        </view>
+        <view class='kong'></view>
+        <view class='content_row'>
+          <text>围栏报警</text>
+          <checkbox value="9"></checkbox>
+        </view>
+        <view class='kong'></view>
+        <view class='content_row'>
+          <text>区域报警</text>
+          <checkbox value="14"></checkbox>
+        </view>
+        <view class='kong'></view>
+        <view class='content_row'>
+          <text>SOS报警</text>
+         <checkbox value="2"></checkbox>
+        </view>
+        <view class='kong'></view>
+        <view class='content_row'>
+          <text>断电报警</text>
+          <checkbox value="5"></checkbox>
+        </view>
+        <view class='kong'></view>
+        <view class='content_row'>
+          <text>低电报警</text>
+         <checkbox value="6"></checkbox>
+        </view>
+        <view class='kong'></view>
+        <view class='content_row'>
+          <text>到期提醒</text>
+         <checkbox value="7"></checkbox>
+        </view>
+        <view class='kong'></view>
+        <view class='content_row'>
+          <text>余额提醒</text>
+         <checkbox value="8"></checkbox>
+        </view>
+        <view class='kong'></view>
+        <view class='content_row'>
+          <text>防拆报警</text>
+         <checkbox value="11"></checkbox>
+        </view>
+        <view class='kong'></view>
+        <view class='content_row'>
+          <text>充电完成</text>
+         <checkbox value="12"></checkbox>
+        </view>
+        <view class='kong'></view>
+        <view class='content_row'>
+          <text>超速报警</text>
+          <checkbox value="13"></checkbox>
+        </view>
+        <view class='kong'></view>
+        <view class='content_row'>
+          <text>广告</text>
+          <checkbox value="99"></checkbox>
+        </view>
+        <view class='kong'></view>
+        <view class='content_row'>
+          <text>行驶提醒</text>
+          <checkbox value="16"></checkbox>
+        </view>
+      </checkbox-group>
+    </view>
+    <view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</view>
+  </view>
+
+</view>

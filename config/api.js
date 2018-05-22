@@ -2,9 +2,9 @@
 // 本机开发时使用
 // var WxApiRoot = 'http://localhost:8080/';
 // 局域网测试使用
-var WxApiRoot = 'http://10.90.24.110:8080/';
+// var WxApiRoot = 'http://apiv4.dkwgps.com/';
 // 云平台部署时使用
-// var WxApiRoot = 'http://122.152.206.172:8082/wx/';
+var WxApiRoot = 'https://apiwx.dkwgps.com/userapi/';
 
 // 以下是图片存储服务器API地址
 // 本机开发时使用
@@ -20,5 +20,14 @@ module.exports = {
     AuthLoginByWeixin: WxApiRoot +'Login/getVipByWeiXin',//获取微信openid
     UserRegisterFastYZM:WxApiRoot +'Login/userRegisterFastYZM',
     AuthRegister : WxApiRoot +"Login/userRegisterFast",
-    AuthNormalRegister: WxApiRoot + "Login/userRegister"
+    AuthNormalRegister: WxApiRoot + "Login/userRegister",
+    SelTerList: WxApiRoot +'Terminal/bcx_selTerList' ,
+    UpTerFocus: WxApiRoot + 'Terminal/upTerFocus' ,
+    SelTerFocusList: WxApiRoot +'Terminal/selTerFocusList',
+    GetAddressDetail: WxApiRoot + 'Terminal/getAddressDetail',
+    MessageCenter: WxApiRoot + 'informationapi/messageCenter',
+    MessageCenterDelOne: WxApiRoot +'informationapi/messageCenterDelOne',
+    Bell_messageCenterBySN: WxApiRoot +'informationapi/bell_messageCenterBySN',
+    SelReplayB: WxApiRoot +'Terminal/selReplayB',
+    SelReplayG: WxApiRoot + 'Terminal/selReplayG'
 };

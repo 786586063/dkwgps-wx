@@ -1,11 +1,11 @@
 <view class="container">
-  <view class='header'>
+  <!-- <view class='header'>
     <image src='/static/images/left_30px.png'></image>
     <text class='nav'>注册</text>
   </view>
    <view class='form-logo'>
     <image class='logo' src='/static/images/app_blue_48px.png'></image>
-  </view>
+  </view> -->
 
   <view class='form-box'>
     <view class='form-item'>

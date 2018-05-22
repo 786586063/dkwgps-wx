@@ -1,6 +1,7 @@
 var md5 = require('../utils/md5.js');
 var sha1 = require('../utils/sha1.js');
-
+var api = require('../config/api.js');
+var app = getApp();
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -122,6 +123,42 @@ function showToast(title){
     duration: 2000
   })
 }
+function toDecimal(x) {
+  var f = parseFloat(x);
+  if (isNaN(f)) {
+    return;
+  }
+  f = Math.round(x * 100) / 100;
+  return f;
+} 
+function getAddress(lon, lat, success, fail){
+  var address = '';
+  wx.request({
+    url: api.GetAddressDetail,
+    data: {
+      lon: lon,
+      lat: lat
+    },
+    method: 'GET',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    success: function (res) {
+
+      // console.log("设备列表:" + JSON.stringify(res));
+      if (res.data.result == 1) {
+        console.log(res.data.address);
+        address = res.data.address;
+        success(address)
+      }
+    },
+    
+    fail: function (res) {
+      fail(res);
+    }
+
+  });
+}
 
 module.exports = {
   formatTime: formatTime,
@@ -133,7 +170,9 @@ module.exports = {
   getSHA1,
   showmodel,
   showSuccessToast,
-  showToast
+  showToast,
+  toDecimal,
+  getAddress
 }
 
 

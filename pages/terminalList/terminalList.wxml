@@ -1,0 +1,98 @@
+<view class="page">
+  <!-- <view class='header'>
+    <image src='/static/images/left_30px.png' bindtap='navcat'></image>
+    <text class='nav'>设备选择</text>
+  </view> -->
+  <!-- <view class='search-all'>
+  
+    <view class='search'>
+       <image src='/static/images/search_gray_30px.png'></image> 
+      <input class="search-input" bindinput="bindPasswordInput" placeholder='搜索'></input>
+    </view>
+     <view class='btn_view'>
+        <button>搜索</button>
+    </view>
+  </view> -->
+  <view class='view-yzm'>
+    <view class='yzm-item'>
+      <image src='/static/images/search_gray_30px.png' />
+      <input class="code" bindinput="bindPasswordInput" placeholder='搜索'></input>
+    </view>
+    <view class='yam-btn'>
+      <button data-id="2" bindtap="btn_search">
+        搜索
+      </button>
+    </view>
+  </view>
+
+
+  <view class="swiper-tab">
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">全部</view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">关注</view>
+
+  </view>
+  <view class='kong'></view>
+
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+    <!-- 我是哈哈 -->
+    <swiper-item>
+      <scroll-view scroll-y style="height: 100%;" bindscrolltoupper="topLoad" bindscrolltolower="bindDownLoad">
+        <view class='list-kong' wx:for="{{terdata}}" wx:for-index="idx" wx:for-item="item" data-id="{{idx}}" catchtap='selectTer'>
+          <view class='item-row'>
+            <view class='row-left'>
+              <view class='row-left-image'>
+                <image src='/static/images/{{item.carimg}}.png'></image>
+              </view>
+              <view class='row-left-info'>
+                <text class='row-left-info-name'>{{item.tname}}</text>
+                <text class='row-left-info-address'>{{item.address}}</text>
+              </view>
+            </view>
+            <view class='row-right'>
+              <image src='/static/images/{{item.focus}}.png'data-id = "{{idx}}" catchtap='bindfocus'></image>
+            </view>
+
+          </view>
+          <view class='kong'></view>
+        </view>
+
+
+        <view class='pull' hidden="{{hidden}}">
+          <text>{{pull_content}}</text>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <!-- 我是呵呵 -->
+    <swiper-item>
+      <scroll-view scroll-y style="height: 100%;" bindscrolltoupper="topLoad" bindscrolltolower="bindDownLoad">
+        <view class='list-kong' wx:for="{{terdata}}" wx:for-index="idx" wx:for-item="item" data-id="{{idx}}" catchtap='selectTer'>
+          <view wx:if="{{ item.focus == 'follow_red_30px'}}">
+
+            <view class='item-row'>
+              <view class='row-left'>
+                <view class='row-left-image'>
+                  <image src='/static/images/{{item.carimg}}.png'></image>
+                </view>
+                <view class='row-left-info'>
+                  <text class='row-left-info-name'>{{item.tname}}</text>
+                  <text class='row-left-info-address'>{{item.address}}</text>
+                </view>
+              </view>
+              <view class='row-right'>
+                <image src='/static/images/{{item.focus}}.png' data-id = "{{idx}}" catchtap='bindfocus'></image>
+              </view>
+
+            </view>
+            <view class='kong'></view>
+          </view>
+        </view>
+
+
+        <view class='pull' hidden="{{hidden}}">
+          <text>{{pull_content}}</text>
+        </view>
+      </scroll-view>
+    </swiper-item>
+
+  </swiper>
+</view>

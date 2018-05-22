@@ -1,19 +1,26 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/history/history",
+      
+    "pages/map/map",
+    "pages/information/information",
+    "pages/terminalList/terminalList",
+    "pages/addterminal/addterminal",
     "pages/auth/login/login",
     "pages/auth/register/register",
     "pages/auth/normalregister/normalregister",
     "pages/auth/reset/reset",
     "pages/wealfare/wealfare",
     "pages/rechargerecord/rechargerecord"
+    
   ],
   "window": {
     "navigationBarTitleText": "",
     "navigationBarTextStyle": "black",
-    "navigationBarBackgroundColor": "#aa154e",
-    "backgroundColor": "#aa154e",
+    "navigationBarBackgroundColor": "#48a6fe",
+    "backgroundColor": "#48a6fe",
     "backgroundTextStyle": "dark",
-    "navigationStyle": "custom"
+    "navigationStyle": "default"
   }
 }

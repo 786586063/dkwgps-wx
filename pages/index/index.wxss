@@ -211,7 +211,7 @@ page {
   height: 85%;
   position: absolute;
   left: 0rpx;
-  top: 200rpx;
+   top: 80rpx; 
 }
 .btn{
   position: absolute;

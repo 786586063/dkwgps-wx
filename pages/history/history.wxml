@@ -1,0 +1,120 @@
+<view class="page">
+  <!-- <view class='header'>
+    <image src='/static/images/left_30px.png' bindtap='navcat'></image>
+    <text class='nav'>历史回放</text>
+  </view> -->
+  <map id="myMap" longitude="{{centerX}}" latitude="{{centerY}}" scale="{{scal}}" style="width: 100%; height:{{scrollHeight}}px;" markers="{{markers}}" polyline="{{polyline}}">
+    <cover-view class='content_top'>
+      <cover-view class='top_row'>
+        <cover-view class='row_text'>02GT新2</cover-view>
+        <cover-view class='row_text'>时间：{{info.gpstime}}</cover-view>
+      </cover-view>
+      <cover-view class='top_row'>
+        <cover-view class='row_text'>时速：{{info.spe}} km/h</cover-view>
+        <cover-view class='row_text'>里程：{{distanceNow}} km/h</cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-image class='select_data' src='../../static/images/calendar_blue_30px.png' catchtap='select_data'></cover-image>
+
+    <cover-image class='switch_btn' src='../../static/images/mapswitch_btn.png'></cover-image>
+    <cover-image class='review_btn' src='../../static/images/playback_btn.png'></cover-image>
+
+    <cover-image class='add_btn' src='../../static/images/narrow&enlarge_add_btn.png' bindtap='upScal'></cover-image>
+    <cover-image class='up_btn' src='../../static/images/narrow&enlarge_reduce_btn.png' bindtap='downScal'></cover-image>
+
+    <cover-view class='content_bottom'>
+      <cover-image src='../../static/images/suspend_48px.png' catchtap='startAndEnd'></cover-image>
+      <cover-view class="body-view">
+
+      </cover-view>
+      <cover-image src='../../static/images/ratio_32x.png'></cover-image>
+    </cover-view>
+
+    <!--mask-->
+    <cover-view class="drawer_screen" catchtap='powerDrawer' data-statu="close" wx:if="{{showModalStatus}}"></cover-view>
+    <!--content-->
+    <!--使用animation属性指定需要执行的动画-->
+    <cover-view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
+
+
+      <!--drawer content-->
+      <cover-view class="drawer_title">回放完毕</cover-view>
+      <cover-view class="drawer_content">
+        <cover-view class='history_play' style='display:{{display_history}}'>
+          <cover-view class='content_row'>
+            <cover-view class='item_title'>回放日期：</cover-view>
+            <cover-view>2018、2、21</cover-view>
+          </cover-view>
+          <cover-view class='kong'></cover-view>
+          <cover-view class='content_row'>
+            <cover-view class='item_title'>起止时间：</cover-view>
+            <cover-view>00：00：00 -23：59：59</cover-view>
+          </cover-view>
+          <cover-view class='kong'></cover-view>
+          <cover-view class='content_row'>
+            <cover-view class='item_title'>行驶时间：</cover-view>
+            <cover-view>9分</cover-view>
+          </cover-view>
+          <cover-view class='kong'></cover-view>
+          <cover-view class='content_row'>
+            <cover-view class='item_title'>最高时速：</cover-view>
+            <cover-view>55km/h</cover-view>
+          </cover-view>
+          <cover-view class='kong'></cover-view>
+          <cover-view class='content_row'>
+            <cover-view class='item_title'>停止时间：</cover-view>
+            <cover-view>23时50分</cover-view>
+          </cover-view>
+          <cover-view class='kong'></cover-view>
+          <cover-view class='content_row'>
+            <cover-view class='item_title'>大约行驶：</cover-view>
+            <cover-view>4km</cover-view>
+          </cover-view>
+        </cover-view>
+
+
+        <!-- <cover-view class='content_row_two'> -->
+        <!-- <cover-view class='select-time'>
+          <cover-view class='btn_bg' data-date='1' catchtap='selectTime'>
+            <cover-image src='../../static/images/history_today.png'></cover-image>
+            <cover-view>今日回放</cover-view>
+          </cover-view>
+          <cover-view class='btn_bg' data-date='2' catchtap='selectTime'>
+            <cover-image src='../../static/images/history_yesterday.png'></cover-image>
+            <cover-view>昨日回放</cover-view>
+          </cover-view>
+          <cover-view class='btn_bg' data-date='3' catchtap='selectTime'>
+            <cover-image src='../../static/images/history_before.png'></cover-image>
+            <cover-view>前日回放</cover-view>
+          </cover-view>
+          <cover-view class='btn_bg' data-date='4' catchtap='selectTime'>
+            <cover-image src='../../static/images/history_diy.png'></cover-image>
+            <cover-view>自定义回放</cover-view>
+          </cover-view>
+        </cover-view> -->
+        <!-- </cover-view> -->
+      </cover-view>
+      <!-- <cover-view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</cover-view> -->
+    </cover-view>
+
+    <!-- <cover-view class="drawer_screen" catchtap='powerDrawer2' data-statu="close" wx:if="{{showModalStatusForDateSelect}}"></cover-view>
+    <cover-view animation="{{animationData2}}" class="drawer_box" wx:if="{{showModalStatusForDateSelect}}"></cover-view>
+    <cover-view animation="{{animationData2}}" class="drawer_box" wx:if="{{showModalStatusForDateSelect}}">
+
+      <cover-view class="drawer_title">日期选择</cover-view>
+      <cover-view class="drawer_content">
+        <cover-view class='content_row_two'>
+          <cover-view>日期选择:</cover-view>
+          <cover-view class='dateselect' catchtap='selectDate'>2018/05/22</cover-view>
+        </cover-view>
+        <cover-view class='content_row_two'>
+          <cover-view>时间选择:</cover-view>
+          <cover-view class='dateselect'>00:00:00</cover-view>--
+          <cover-view class='dateselect2'>23:59:59</cover-view>
+        </cover-view>
+
+      </cover-view>
+      <cover-view class="btn_ok" bindtap="powerDrawer2" data-statu="close">确定</cover-view>
+    </cover-view> -->
+  </map>
+</view>

@@ -65,17 +65,17 @@
     </view>
 
   </view>
-  <view class="bg" bindtap='hideview' style='display:{{display}}'></view>
+  <!-- <view class="bg" bindtap='hideview' style='display:{{display}}'></view> -->
   <!-- 主页 -->
   <view class="home {{!ui.tStart? 'withAnimate': ''}}" style="left:{{ui.offsetLeft}}px;width: {{ui.windowWidth}}px" bindtap="handlerPageTap">
-    <view class='header'>
+    <!-- <view class='header'>
 
       <text class='nav'>伴车星</text>
-    </view>
+    </view> -->
     <view class='page-row-header'>
       <image class='icon_user' catchtap='handlerAvatarTap' src="../../static/images/per_whight_30px.png"></image>
       <view class='ter_name'>
-        <text class='terName' style='color:#ffffff;font-size:30rpx;'> 我的机型</text>
+        <text class='terName' style='color:#ffffff;font-size:30rpx;'> {{terInfo.tname}}</text>
       </view>
       <image class='icon_user' bindtap='' src="../../static/images/scanning_whight_30px.png"></image>
 
@@ -84,12 +84,12 @@
     <view class='mapcontrainer'>
 
 <!-- style='display:{{display}}' -->
-      <map id="myMap" style="width: 100%; height: 100%;" show-location>
+      <map id="myMap" longitude="{{centerX}}" latitude="{{centerY}}"scale="{{scal}}" style="width: 100%; height:{{scrollHeight}}px;" markers="{{markers}}" bindmarkertap="markertap" include-points="{{include}}"  show-location>
       
         <!-- <cover-view>
         </cover-view> -->
         <cover-view class='contrainer-message'>
-          <cover-image class='news_btn' src='../../static/images/news_btn.png'></cover-image>
+          <cover-image class='news_btn' src='../../static/images/news_btn.png' catchtap='nav_infomation'></cover-image>
           <!-- <view class='kong'></view> -->
           
         </cover-view>
@@ -106,18 +106,19 @@
 
         <cover-view style='clear:both'></cover-view>
         <cover-view class='shrik_btn'>
-          <cover-image class='one' src='../../static/images/narrow2_btn.png'></cover-image>
-          <cover-image class='one' src='../../static/images/up_btn.png' style='margin-top:20rpx'></cover-image>
-          <cover-image class='one' src='../../static/images/down_btn.png'></cover-image>
+          <cover-image class='one' src='../../static/images/narrow2_btn.png' bindtap='incloude' ></cover-image>
+          <cover-image class='one' src='../../static/images/narrow&enlarge_add_btn.png' style='margin-top:20rpx' bindtap='upScal'></cover-image>
+          <cover-image class='one' src='../../static/images/narrow&enlarge_reduce_btn.png' bindtap='downScal'></cover-image>
+
         </cover-view>
         <cover-view style='clear:both'></cover-view>
         <cover-view class='location-now'>
           <cover-image class='one' src='../../static/images/eyes_btn.png'></cover-image>
-          <cover-image class='one' src='../../static/images/location1_btn.png'></cover-image>
+          <cover-image class='one' src='../../static/images/location1_btn.png' bindtap='localtion' ></cover-image>
         </cover-view>
 
         <cover-view class='ter-list'>
-          <cover-image class='one' src='../../static/images/carchoose_btn.png'></cover-image>
+          <cover-image class='one' src='../../static/images/carchoose_btn.png' bindtap='openTerList'></cover-image>
 
         </cover-view>
 
@@ -126,25 +127,25 @@
             <cover-view class='info-row'>
               <cover-view class='status'>
                 <cover-image src='../../static/images/Informationhints_30px.png' class='info-image'></cover-image>
-                <cover-view class='view-text'>离线XX天XX时XX分</cover-view>
+                <cover-view class='view-text'>{{terInfo.carstate}}</cover-view>
               </cover-view>
               <cover-view class='voil'>
                 <cover-image src='../../static/images/power_30px.png' class='info-image'></cover-image>
-               <cover-view class='view-text'>电量 50%</cover-view>
+               <cover-view class='view-text'>电量 {{terInfo.vol}}%</cover-view>
               </cover-view>
             </cover-view>
             <cover-view class='info-row'>
               <cover-image src='../../static/images/time_green_30px.png' class='info-image'></cover-image>
-              <cover-view class='view-text'>时间2018年5月7日16:48:00（卫星定位）</cover-view>
+              <cover-view class='view-text'>定位时间：{{terInfo.gpstime}}(卫星定位)</cover-view>
             </cover-view>
             <cover-view class='info-row'>
-              <cover-image src='../../static/images/\seat_blue_48px.png' class='info-image'></cover-image>
-              <cover-view class='view-address'>宁波市鄞州区四明中路，离博瑞兰特文化教育中心联盟约73米</cover-view>
+              <cover-image src='../../static/images/time_green_30px.png' class='info-image'></cover-image>
+              <cover-view class='view-address'>{{address}}</cover-view>
               
             </cover-view>
           </cover-view>
           <cover-view class='right'>
-            <cover-image src='../../static/images/playback_66px.png'></cover-image>
+            <cover-image src='../../static/images/playback_66px.png' catchtap='openHistory'></cover-image>
           </cover-view>
 
 
