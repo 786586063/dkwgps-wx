@@ -1,0 +1,35 @@
+<view class="container">
+
+  <view class='form-logo'>
+    <image class='logo' src='/static/images/app_blue_48px.png'></image>
+  </view>
+
+  <view class='form-box'>
+    <view class='form-item'>
+      <image src='/static/images/mobile.png' />
+      <input value="{{mobile}}" bindinput="bindMobileInput" placeholder='请输入手机号'></input>
+
+    </view>
+  </view>
+
+  <view class='view-yzm'>
+    <view class='yzm-item'>
+      <image src='/static/images/Verification_30px.png' />
+      <input class="code" value="{{code}}" bindinput="bindCodeInput" placeholder='验证码'></input>
+    </view>
+    <view class='yam-btn'>
+      <button disabled='{{disabled}}' data-id="2" bindtap="sendCode">
+        <text style='color:#ffffff'>{{time}}</text>
+      </button>
+    </view>
+  </view>
+
+  <view class='form-box'>
+    <button class='btn-login' bindtap="enterNext">
+      <text class='btn-text'>下一步</text>
+    </button>
+  </view>
+  <image class='bottom' src='/static/images/city.png'></image>
+
+
+</view>

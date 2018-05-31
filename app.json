@@ -1,26 +1,35 @@
 {
   "pages": [
+   
     "pages/index/index",
+    "pages/auth/reset/resetone/resetone",
+    "pages/auth/reset/resetthree/resetthree",
+    "pages/auth/login/login",
+    
+    "pages/recharge/recharge",
+    "pages/share/share",
+    "pages/addterminal/addterminal",
+    "pages/terminalDetail/terminalDetail",
     "pages/history/history",
-      
+    "pages/selectdate/selectdate",
     "pages/map/map",
     "pages/information/information",
     "pages/terminalList/terminalList",
-    "pages/addterminal/addterminal",
-    "pages/auth/login/login",
     "pages/auth/register/register",
     "pages/auth/normalregister/normalregister",
     "pages/auth/reset/reset",
     "pages/wealfare/wealfare",
-    "pages/rechargerecord/rechargerecord"
+    "pages/rechargerecord/rechargerecord",
+    
+    "pages/auth/reset/resettwo/resettwo"
     
   ],
   "window": {
     "navigationBarTitleText": "",
-    "navigationBarTextStyle": "black",
     "navigationBarBackgroundColor": "#48a6fe",
-    "backgroundColor": "#48a6fe",
+    "backgroundColor": "#ffffff",
     "backgroundTextStyle": "dark",
-    "navigationStyle": "default"
+    "navigationStyle": "default",
+    "navigationBarTextStyle": "white"
   }
 }

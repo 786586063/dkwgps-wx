@@ -55,9 +55,13 @@ Page({
     //   }
     // });  
     // this.getInfomationList(userinfo.vid,that.data.page,'30')
+    wx.showLoading({
+      title: '正在加载。。。',
+    })
     let types = '99,2,4,5,6,7,8,9,11,12,13,14,16'
     var userinfo = wx.getStorageSync('userInfo');
     that.getListWithTypes(userinfo.vid, '', that.data.page, '30', types);
+   
   
   },
   checkboxChange:function(e){
@@ -207,7 +211,7 @@ Page({
           that.setData({
             allDatas: allDatas
           });
-
+        
         }
         else if (res.data.result == 0) {
           util.showToast('无数据！')
@@ -368,6 +372,7 @@ Page({
           that.setData({
             allDatas: allDatas
           });
+          wx.hideLoading()
           // if (res.data.datas.length < 20) {
           //   //没有更多数据了
           //   that.setData({
@@ -383,8 +388,10 @@ Page({
             hidden: false,
             pull_content: '没有更多数据了'
           });
+          wx.hideLoading()
         } else {
           util.showToast('接口出错！')
+          wx.hideLoading()
 
         }
       }

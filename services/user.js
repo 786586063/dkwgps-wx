@@ -46,6 +46,7 @@ function login() {
  */
 function getUserInfo() {
   return new Promise(function (resolve, reject) {
+   
     wx.getUserInfo({
       withCredentials: true,
       success: function (res) {
@@ -60,12 +61,26 @@ function getUserInfo() {
             if (res.confirm) {
               wx.openSetting({
                 success: (res) => {
-                  if (res.authSetting["scope.userInfo"] === true) {
+                  if (res.authSetting["scope.userInfo"] == true) {
                     wx.getUserInfo({
                       withCredentials: true,
                       success: function (res) {
                         resolve(res);
                       },
+                    })
+                  }else{
+                    wx.authorize({
+                      scope: 'scope.userInfo',
+                      success(res) {
+                        wx.getUserInfo({
+                          withCredentials: true,
+                          success: function (res) {
+                            resolve(res);
+                          },
+                        })
+                      },
+                      fail() { },
+                      complete() { }
                     })
                   }
                 }

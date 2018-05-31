@@ -66,3 +66,22 @@
     background: #b4282d;
     border-radius: 6rpx;
 }
+.form-logo {
+  display: flex;
+  flex-direction: row;
+  margin-top: 50rpx;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+}
+
+.logo {
+  /* position: relative;
+  top: 98rpx;
+  left: 260rpx; *//* display: flex;
+  align-items: center; */
+  width: 150rpx;
+  height: 150rpx;
+  margin-bottom: 56rpx;
+}

@@ -1,0 +1,246 @@
+.page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn_bg {
+  background: #48a6fe;
+  height: 70rpx;
+  width: 330rpx;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.btn_bg image {
+  width: 40rpx;
+  height: 60rpx;
+  margin-right: 20rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  margin-left: 20rpx;
+}
+
+.btn_bg view {
+  color: #fff;
+}
+
+.content_row_two {
+  margin-right: 50rpx;
+  margin-left: 50rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 80rpx;
+}
+
+.select_time {
+  display: flex;
+  flex-direction: column;
+  margin-top: 200rpx;
+}
+
+.page_row {
+  display: flex;
+  flex-direction: row;
+  margin: 10rpx 30rpx;
+  justify-content: space-between;
+}
+
+/*mask*/
+
+.drawer_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+}
+
+/*content*/
+
+.drawer_box {
+  width: 650rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  z-index: 1001;
+  background: #fafafa;
+  margin: -150px 50rpx 0 50rpx;
+  border-radius: 3px;
+}
+
+.drawer_title {
+  padding: 15px;
+  font: 20px "microsoft yahei";
+  text-align: center;
+}
+
+.drawer_content {
+  height: 210rpx;
+  overflow-y: scroll; /*超出父盒子高度可滚动*/
+}
+
+.btn_ok {
+  padding: 10px;
+  font: 20px "microsoft yahei";
+  text-align: center;
+  border-top: 1px solid #e8e8ea;
+  color: #3cc51f;
+}
+
+.top {
+  padding-top: 8px;
+}
+
+.bottom {
+  padding-bottom: 8px;
+}
+
+.title {
+  height: 30px;
+  line-height: 30px;
+  width: 160rpx;
+  text-align: center;
+  display: inline-block;
+  font: 300 28rpx/30px "microsoft yahei";
+}
+
+.input_base {
+  border: 2rpx solid #ccc;
+  padding-left: 10rpx;
+  margin-right: 50rpx;
+}
+
+.input_h30 {
+  height: 30px;
+  line-height: 30px;
+}
+
+.input_h60 {
+  height: 60px;
+}
+
+.input_view {
+  font: 12px "microsoft yahei";
+  background: #fff;
+  color: #000;
+  line-height: 30px;
+}
+
+input {
+  font: 12px "microsoft yahei";
+  background: #fff;
+  color: #000;
+}
+
+radio {
+  margin-right: 20px;
+}
+
+.grid {
+  display: -webkit-box;
+  display: box;
+}
+
+.col-0 {
+  -webkit-box-flex: 0;
+  box-flex: 0;
+}
+
+.col-1 {
+  -webkit-box-flex: 1;
+  box-flex: 1;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.content_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10rpx 50rpx;
+}
+
+.content_row image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.content_row text {
+  color: #666;
+  font-size: 28rpx;
+}
+
+.content_row_two {
+  margin-right: 50rpx;
+  margin-left: 50rpx;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; */
+  height: 80rpx;
+}
+
+.select_time {
+  display: flex;
+  flex-direction: column;
+}
+
+.dateselect {
+  border: 2px solid green;
+  /* border-color: gray; */
+  margin-left: 0rpx;
+  border-radius: 10rpx;
+  padding: 5rpx 5rpx;
+  width: 190rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.dateselect2 {
+  border: 2px solid green;
+  border-radius: 10rpx;
+  padding: 5rpx 5rpx;
+  width: 190rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.time-title {
+  float: left;
+  width: 20%;
+  text-align: center;
+  color: #45bce8;
+}
+
+.picker-text {
+  text-align: center;
+}
+
+/*mask*/
+
+.time_screens {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  opacity: 0.5;
+  overflow: hidden;
+}

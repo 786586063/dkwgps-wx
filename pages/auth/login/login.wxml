@@ -9,17 +9,17 @@
 
   <view class='form-box'>
     <view class='form-item'>
-      <image src='/static/images/user_50px.png' />
+      <image src='/static/images/user_50px.png' style='width: 42rpx; height: 42rpx;' />
       <input class="username" value="{{username}}" bindinput="bindUsernameInput" placeholder='请输入手机号'></input>
-      <image src='/static/images/down.png' />
+      <image src='/static/images/down.png' style='width: 42rpx; height: 30rpx;'/>
     </view>
   </view>
   <view class='form-box'>
     <view class='form-item'>
-      <image src='/static/images/user_50px.png' />
+      <image src='/static/images/lock.png' />
       <input class="password" value="{{password}}" password='{{pwd}}' bindinput="bindPasswordInput" placeholder='请输入密码'></input>
 
-      <image src='{{open_pwd_pic}}' bindtap='openpwd' />
+      <image src='{{open_pwd_pic}}' bindtap='openpwd' style=' width: 36rpx; height: 30rpx;' />
     </view>
   </view>
   <view class='remind'>
@@ -55,7 +55,7 @@
 
     </view>
     <view class='remind-pwd'>
-      <navigator url="/pages/auth/reset/reset" class="reset">忘记密码</navigator>
+      <navigator url="/pages/auth/reset/resetone/resetone" class="reset">忘记密码</navigator>
       <!-- <text>忘记密码</text> -->
 
     </view>
@@ -69,7 +69,10 @@
   </view>
 
   <view class='form-quick-btn'>
-    <image src='/static/images/wechat_48px.png' bindtap="wxLogin"></image>
+    <button class='wx_btn' open-type="getUserInfo"   lang="zh_CN" bindgetuserinfo='getuserInfo'>
+      <image src='/static/images/wechat_48px.png' bindtap="wxLogin"></image>
+    </button>
+    
   </view>
   <view class='form-bottom'>
     <image src='/static/images/city.png'></image>

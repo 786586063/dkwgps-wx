@@ -82,6 +82,62 @@ Page({
 
     });
   },
+  getuserInfo:function(e){
+    console.log(e.detail.errMsg)
+    console.log(e.detail.userInfo)
+    console.log(e.detail.rawData)
+    wx.login({
+      success: function (res) {
+        //登录远程服务器
+        var encryptedData = e.detail.encryptedData;
+        var iv = e.detail.iv
+        // console.log("userInfo"+JSON.stringify(userInfo));
+        console.log("code:" + res.code);
+        console.log("data: " + encryptedData);
+        console.log("iv: " + iv);
+        util.request(api.AuthLoginByWeixin, {
+          encryptedData: encryptedData,
+          iv: iv,
+          code: res.code,
+        }, 'POST').then(res => {
+          if (res.data.result == 1) {
+            //存储用户信息
+            wx.setStorageSync('userInfo', res.data.datas);
+            util.showSuccessToast('微信登录成功')
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '../../index/index',
+              })
+            }, 1000)
+          } else if (res.data.result == 2) {
+            var openid = res.data.openid;
+            wx.showModal({
+              title: '提示',
+              content: '检查到您还没有在本平台注册，是否跳转至注册页面？',
+              success: function (res) {
+                if (res.confirm) {
+                  wx.setStorageSync('openid', openid)
+                  wx.navigateTo({
+                    url: '../register/register?openid=' + openid
+                  })
+                } else if (res.cancel) {
+                  console.log("取消")
+                }
+              }
+            })
+
+          
+          } else {
+            util.showErrorToast('微信登录失败');
+          }
+        })
+      },
+      fail: function (err) {
+        // reject(err);
+      }
+    });
+    
+  },
   accountLogin: function () {
     var that = this;
 
@@ -135,6 +191,10 @@ Page({
           util.showErrorToast('账户登录失败');
         
         }
+      },
+      fail:function(res){
+        app.globalData.hasLogin = false;
+        util.showErrorToast('请求接口失败');
       }
     });
   },

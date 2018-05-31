@@ -128,7 +128,7 @@
   color: #999999;
   font-size: 30rpx;
 }
-.form-quick-btn image{
+.form-quick-btn button image{
   width: 64rpx;
   height: 64rpx;
   display: flex;
@@ -151,3 +151,14 @@
   height: 100%;
   background: #322;
 }
+.wx_btn{
+  background: #ffffff;
+  
+}
+.wx_btn::after{
+border: none;
+}
+/* .eye_lock{
+  width: 42rpx;
+  height: 30rpx;
+} */

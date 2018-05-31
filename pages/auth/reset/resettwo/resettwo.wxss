@@ -1,0 +1,181 @@
+.container {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.header{
+  display: flex;
+  flex-direction: row;
+  height: 128rpx;
+  background:#48A6FE; 
+  align-items: flex-end;
+  padding-left: 30rpx;
+ 
+}
+.header image{
+  display: flex;
+  height: 30rpx;
+  width: 30rpx;
+  margin-right: 20rpx;
+  margin-bottom: 29rpx;
+}
+.header text{
+  color: #ffffff;
+  font-size: 34rpx;
+   margin-bottom: 20rpx;
+}
+.form-logo {
+  display: flex;
+  flex-direction: row;
+  margin-top: 50rpx;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+}
+.logo {
+  /* position: relative;
+  top: 98rpx;
+  left: 260rpx; *//* display: flex;
+  align-items: center; */
+  width: 150rpx;
+  height: 150rpx;
+  margin-bottom: 70rpx;
+  margin-top: 70rpx;
+}
+.form-box {
+  display: flex;
+  flex-direction: row;
+  height: 90rpx;
+  background: #efeff4;
+  border-radius: 10rpx;
+  align-items: center;
+  margin: 20rpx 65rpx;
+}
+.form-item {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+ 
+}
+
+.form-item image {
+  height: 42rpx;
+  width: 42rpx;
+  align-self: center;
+  margin-left: 10rpx;
+  margin-right: 20rpx;
+}
+
+.form-item input {
+  flex: 1;
+  font-size: 30rpx;
+  color: #999999;
+}
+.view-yzm{
+  display: flex;
+  flex-direction: row;
+   height: 80rpx;
+  justify-content: space-between;
+  border-radius: 10rpx;
+  align-items: center;
+  margin: 20rpx 65rpx;
+}
+.view-yzm .yzm-item{
+  display: flex;
+  width: 50%;
+  flex: 2;
+  height: 100%;
+  justify-content: space-between;
+   background: #efeff4;
+  flex-direction: row;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+  align-items: center;
+}
+
+.yzm-item image {
+height: 50rpx;
+  width: 50rpx;
+  align-self: center;
+  margin-left: 30rpx;
+  margin-right: 20rpx;
+}
+.yzm-item input{
+  font-size: 30rpx;
+}
+.yam-btn button{
+   background:#48A6FE; 
+   flex: 1;
+}
+
+.btn-login{
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+ 
+   background: #48A6FE; 
+   
+}
+.btn-login .btn-text{
+  display: flex;
+  color: #fff;
+  font-size: 30rpx;
+}
+.remind{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10rpx;
+  /* margin-bottom: 40rpx; */
+  margin-left: 65rpx;
+  margin-right: 65rpx;
+}
+.remind .remind-username ,.remind .remind-pwd {
+  display: flex;
+  flex-direction: row;
+ 
+   /* justify-content: stretch;
+  align-self: flex-end;  */
+
+}
+.remind .remind-center{
+  display: flex;
+  flex: 1;
+}
+.remind .remind-username image, .remind .remind-pwd image{
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 10rpx;
+}
+.form-logo {
+  display: flex;
+  flex-direction: row;
+  margin-top: 50rpx;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+}
+
+.logo {
+  width: 150rpx;
+  height: 150rpx;
+  margin-bottom: 56rpx;
+}
+.bottom{
+  position: absolute;
+  bottom: 68rpx;
+  left: 0rpx;
+  height: 329rpx;
+  width: 100%;
+
+}

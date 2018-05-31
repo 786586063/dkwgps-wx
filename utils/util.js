@@ -48,7 +48,7 @@ function request(url, data = {}, method = "GET") {
       data: data,
       method: method,
       header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json'
         // 'X-Litemall-Token': wx.getStorageSync('token')
       },
       success: function (res) {

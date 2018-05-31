@@ -7,6 +7,7 @@ const FAST_SPEED_SECOND = 100;
 const FAST_SPEED_DISTANCE = 5;
 const FAST_SPEED_EFF_Y = 50;
 var app = getApp();
+var interval= null;
 Page({
 
   /**
@@ -19,22 +20,25 @@ Page({
       offsetLeft: 0,
       tStart: true
     },
-    display:'none',
+    display: 'none',
     display2: 'block',
-    fxIsOpen:'none',
-    fximage:'../../static/images/right_30px.png',
-    useravr:'../../static/images/Headportrait.png',
-    usernike:'用户昵称',
-    pull_content:'加载中。。。',
-    allFocusTer:[],
-    markers:[],
-    scal:5,
-    centerX:'',
-    centerY:'',
-    terInfo:{},
-    include:[],
-    address:'',
-    scrollHeight:'1000'
+    fxIsOpen: 'none',
+    fximage: '../../static/images/right_30px.png',
+    useravr: '../../static/images/Headportrait.png',
+    usernike: '用户昵称',
+    pull_content: '加载中。。。',
+    allFocusTer: [],
+    markers: [],
+    scal: 5,
+    centerX: '',
+    centerY: '',
+    terInfo: {},
+    include: [],
+    address: '',
+    scrollHeight: '1000',
+    location_btn: 'location1_btn',
+    eyes_btn: 'eyes_btn',
+    noFocusSelected:false
   },
 
   /**
@@ -46,32 +50,42 @@ Page({
       success: function (res) {
         console.info(res.windowHeight);
         that.setData({
-          scrollHeight: res.windowHeight-40
+          scrollHeight: res.windowHeight - 40
         });
       }
     });
-    this.mapCtx = wx.createMapContext('myMap')
+
     //检查是否登录
     var userinfo = wx.getStorageSync('userInfo');
-    if(userinfo != null&& userinfo != ''){
+    if (userinfo != null && userinfo != '') {
 
       //获取账号下的总设备
       let vtcount = userinfo.vtcount;
 
-      let centerX = '';
-      let centerY = '';
+     
       if (vtcount < 30) {
-        //标注所有车，定位到中心车
-        this.getTerList(userinfo.vid, vtcount, "0", '', '', userinfo.isvir)
+        if(vtcount >0){
+          //标注所有车，定位到中心车
+          that.getTerList(userinfo.vid, vtcount, "0", '', '', userinfo.isvir)
+        }else{
+          util.showToast('检测到您账号下还未绑定设备，请先前往绑定！')
+
+          setTimeout(function () {
+            wx.navigateTo({
+              url: '../addterminal/addterminal',
+            })
+          }, 2000)
+        }
+       
 
       } else { //只显示关注的车
         let focus = userinfo.focus;
         if (focus > 0) {
 
           //有关注 显示所有关注车，定位中心  
-          this.getAllFocusTer(userinfo.vid, focus, '0', '', '', userinfo.isvir)
+          that.getAllFocusTer(userinfo.vid, focus, '0', '', '', userinfo.isvir)
         } else {//无关注，进列表选一辆关注
-          this.getTerList(userinfo.vid, "30", "0", '', '', userinfo.isvir)
+          that.getTerList(userinfo.vid, "30", "0", '', '', userinfo.isvir)
           util.showToast('检测到您还未关注车辆，请前往车辆列表选取一台进行关注！')
 
           setTimeout(function () {
@@ -81,36 +95,44 @@ Page({
           }, 2000)
 
         }
-
-
-        //没有关注，从列表点进去只显示这一辆车
       }
+      // interval = setInterval(function () {
+      //   var noFocusSelected = that.data.noFocusSelected;
+      //   if(noFocusSelected){
+      //     that.getTerList(userinfo.vid, vtcount, "0", '', '', userinfo.isvir)
+      //   }else{
+      //     if (vtcount < 30) {
+      //       //标注所有车，定位到中心车
+      //       that.getTerList(userinfo.vid, vtcount, "0", '', '', userinfo.isvir)
 
-      // //判断有没有中心车
-      let center = wx.getStorageSync('centerTer');
-      if (center != null && center != '') {//有中心车
-        centerX = center.oldlon;
-        centerY = center.oldlat;
-      }
-      // else {//没有中心车
-      //   let markers = that.data.markers;
-      //   console.log(JSON.stringify(markers))
-      //   if (centerTer != null && centerTer != '') {//有中心车
-      //     centerY = centerTer.latitude;
-      //     centerX = centerTer.longitude;
-      //   } else {
-      //     centerY = markers[0].latitude;
-      //     centerX = markers[0].longitude;
+      //     } else { //只显示关注的车
+      //       let focus = userinfo.focus;
+      //       if (focus > 0) {
+
+      //         //有关注 显示所有关注车，定位中心  
+      //         that.getAllFocusTer(userinfo.vid, focus, '0', '', '', userinfo.isvir)
+      //       } else {//无关注，进列表选一辆关注
+      //         that.getTerList(userinfo.vid, "30", "0", '', '', userinfo.isvir)
+      //         util.showToast('检测到您还未关注车辆，请前往车辆列表选取一台进行关注！')
+
+      //         setTimeout(function () {
+      //           wx.navigateTo({
+      //             url: '../terminalList/terminalList',
+      //           })
+      //         }, 2000)
+
+      //       }
+      //     }
       //   }
-      // }
+        
+      // }, 10 * 1000);
       that.setData({
-        centerX: centerX,
-        centerY: centerY,
         usernike: userinfo.nickname
+        // useravr: userinfo.headimg
       });
 
 
-    }else{
+    } else {
       wx.showToast({
         title: '检测到您未登录，正在跳转至登录界面，请稍等。。。',
         icon: 'none',
@@ -122,28 +144,7 @@ Page({
         })
       }, 1000)
     }
-   
-    // user.checkLogin().then(() => {
-    //   console.log("已登录")
-      
 
-    // }).catch(() => {
-    //   // if (wx.getStorageSync('userInfo') == null) {
-    //     // console.log("未登录")
-    //     wx.showToast({
-    //       title: '检测到您未登录，正在跳转至登录界面，请稍等。。。',
-    //       icon: 'none',
-    //       duration: 2000
-    //     })
-    //     setTimeout(function () {
-    //       wx.navigateTo({
-    //         url: '../auth/login/login',
-    //       })
-    //     }, 2000)
-    //   // }
-
-
-    // });
     try {
       let res = wx.getSystemInfoSync()
       this.windowWidth = res.windowWidth;
@@ -153,79 +154,160 @@ Page({
       this.setData({ ui: this.data.ui })
     } catch (e) {
     }
-   
-    //创建marker
-
 
   },
-  openHistory:function(){
+
+  switchUser: function () {
+    wx.clearStorageSync('userInfo');
     wx.navigateTo({
-      url: '../history/history',
+      url: '../auth/login/login'
     })
   },
-  incloude:function(){
+  nac_ter_detail: function () {
+    var that = this;
+    var terInfo = that.data.terInfo;
+    console.log(terInfo);
+    var sn = terInfo.sn;
+    var parent = terInfo.parent;
+    var t_id = terInfo.t_id;
+    wx.navigateTo({
+      url: '../terminalDetail/terminalDetail?sn=' + sn + '&parent=' + parent + '&t_id=' + t_id
+    })
+  },
+  navigation: function () {
+    var that = this;
+    var terInfo = that.data.terInfo;
+
+    wx.openLocation({
+      latitude: parseFloat(terInfo.glat),
+      longitude: parseFloat(terInfo.glon),
+      scale: 18,
+      name: terInfo.address,
+      address: that.data.address
+    })
+  },
+  openHistory: function () {
+    var that = this;
+    var terInfo = that.data.terInfo;
+    console.log(terInfo);
+    var sn = terInfo.sn;
+    var tname = terInfo.tname;
+    wx.navigateTo({
+      url: '../history/history?sn=' + sn + '&tname=' + tname,
+    })
+  },
+  incloude: function () {
     var that = this;
     let include = that.data.include;
     let markers = that.data.markers;
     that.setData({
-      include : markers
+      include: markers,
+      scal: 5
     });
   },
-  localtion:function(){
+  localtion: function () {
     var that = this;
-    wx.getLocation({
-      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
-      success: (res) => {
-        console.log(res)
-        let latitude = res.latitude;
-        let longitude = res.longitude;
-        
+    var location_btn = that.data.location_btn;
+    if (location_btn == 'location1_btn') {//定位到自己的位置
+      wx.getLocation({
+        type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+        success: (res) => {
+          console.log(res)
+          let latitude = res.latitude;
+          let longitude = res.longitude;
+
+          this.setData({
+            centerX: longitude,
+            centerY: latitude,
+            scal: 15,
+            location_btn: 'location2_btn'
+          })
+        }
+      });
+    } else {//移动至选中车辆坐标
+      let center = wx.getStorageSync('centerTer');
+      if (center != null && center != '') {//有中心车
+        let centerX = center.longitude;
+        let centerY = center.latitude;
         this.setData({
-          centerX: longitude,
-          centerY: latitude,
-          scal :15
+          centerX: centerX,
+          centerY: centerY,
+          scal: 15,
+          location_btn: 'location1_btn'
         })
       }
-    });
+
+    }
+
   },
-  markertap:function(e){
+  isOpenCallout: function () {
+    var that = this;
+    var eyes_btn = that.data.eyes_btn;
+    var markers = that.data.markers;
+    if (eyes_btn == 'eyes_btn') { //打开标签
+      for (var item of markers) {
+        item.callout.display = 'BYCLICK';
+      }
+
+      that.setData({
+        markers: markers,
+        eyes_btn: 'eyes_locked_btn'
+      })
+    } else { //关闭
+      for (var item of markers) {
+        item.callout.display = 'ALWAYS';
+      }
+
+      that.setData({
+        markers: markers,
+        eyes_btn: 'eyes_btn'
+      })
+    }
+  },
+  addterminal: function () {
+
+    wx.navigateTo({
+      url: '../addterminal/addterminal',
+    })
+  },
+  markertap: function (e) {
     var id = e.markerId;
     var that = this;
     var allData = that.data.allFocusTer;
     var markers = that.data.markers;
     var selectTer = allData[id];
     //更改中心车位置
-    var centerX = selectTer.oldlon;
-    var centerY = selectTer.oldlat;
+    var centerX = markers[id].longitude;
+    var centerY = markers[id].latitude;
     //改变选中marker的颜色
-    console.log(markers[id])
-    for(var i = 0 ; i < markers.length;i++){
-      if(i == id){
+    // console.log(markers[id])
+    for (var i = 0; i < markers.length; i++) {
+      if (i == id) {
         markers[i].callout.color = "#FF5858";
-      }else{
+      } else {
         markers[i].callout.color = "#666666"
       }
     }
 
     this.getAddress(centerX, centerY)
     //把选中的目标车缓存在本地
-    wx.setStorageSync('centerTer', selectTer);
+    wx.setStorageSync('centerTer', markers[id]);
     that.setData({
       centerX: centerX,
       centerY: centerY,
-      scal : 14,
+      scal: 15,
       terInfo: selectTer,
-      markers:markers
+      markers: markers
     });
-    
+
   },
-  nav_infomation : function(){
+  nav_infomation: function () {
     wx.navigateTo({
       url: '../information/information',
     })
   },
-  getAddress:function(lon, lat){
-   var that = this;
+  getAddress: function (lon, lat) {
+    var that = this;
     wx.request({
       url: api.GetAddressDetail,
       data: {
@@ -241,9 +323,9 @@ Page({
         // console.log("设备列表:" + JSON.stringify(res));
         if (res.data.result == 1) {
           console.log(res.data.address);
-         that.setData({
-           address: res.data.address
-         })
+          that.setData({
+            address: res.data.address
+          })
         }
       }
     })
@@ -279,28 +361,36 @@ Page({
           let centerY = '';
           console.log(res.data.datas.length)
           allFocusTer = res.data.datas;
-          let m = that.getMarkers(allFocusTer)
-          let terInfo = '';
           let center = wx.getStorageSync('centerTer');
+          let m =[];
+          if (that.data.noFocusSelected){
+            m.push(center);
+          }else{
+            m = that.getMarkers(allFocusTer)
+          }
+          
+          let terInfo = '';
+         
           // console.log()
-          let scal = '13';
+          let scal = '15';
           if (center == null || center == '') {
-            console.log(allFocusTer[0]);
+            // console.log(allFocusTer[0]);
             terInfo = allFocusTer[0];
             centerX = m[0].longitude;
             centerY = m[0].latitude;
-            
+
             // terInfo.address = util.getAddress(centerX, centerY);
           } else {
-            terInfo = center;
-            centerX = center.oldlon;
-            centerY = center.oldlat;
+
+            centerX = center.longitude;
+            centerY = center.latitude;
             for (var i = 0; i < m.length; i++) {
-              if (m[i].callout.content == center.tname) {
+              if (m[i].callout.content == center.callout.content) {
                 m[i].callout.color = "#FF5858";
+                terInfo = allFocusTer[i];
               }
             }
-            scal = 16;
+            scal = 15;
           }
           that.getAddress(centerX, centerY)
           that.setData({
@@ -311,7 +401,7 @@ Page({
             terInfo: terInfo,
             scal: scal
           })
-         
+
         }
         else if (res.data.result == 0) {
           util.showToast('没有更多数据了')
@@ -348,33 +438,39 @@ Page({
       },
       success: function (res) {
 
-        console.log("设备列表:" + JSON.stringify(res));
+        // console.log("设备列表:" + JSON.stringify(res));
         if (res.data.result == 1) {
           let centerX = '';
           let centerY = '';
           console.log(res.data.datas.length)
           allFocusTer = res.data.datas;
-          let m =that.getMarkers(allFocusTer)
+          let m = that.getMarkers(allFocusTer)
+          console.log(m)
           let terInfo = '';
           let center = wx.getStorageSync('centerTer');
           // console.log()
-          let scal = '13';
-          if(center == null || center == ''){
+          let scal = '15';
+          if (center == null || center == '') {
             console.log(allFocusTer[0]);
             terInfo = allFocusTer[0];
             centerX = m[0].longitude;
             centerY = m[0].latitude;
-           
-          }else{
-            terInfo = center;
-            centerX = center.oldlon;
-            centerY = center.oldlat;
-            for(var i = 0;i < m.length;i++){
-              if (m[i].callout.content == center.tname){
-                m[i].callout.color ="#FF5858";
+
+          } else {
+            for (var item of allFocusTer) {
+              if (item.tname == center.name) {
+                terInfo = item;
               }
             }
-            scal = 16;
+
+            centerX = center.longitude;
+            centerY = center.latitude;
+            for (var i = 0; i < m.length; i++) {
+              if (m[i].callout.content == center.name) {
+                m[i].callout.color = "#FF5858";
+              }
+            }
+            scal = 15;
           }
           that.getAddress(centerX, centerY)
           that.setData({
@@ -383,7 +479,7 @@ Page({
             centerX: centerX,
             centerY: centerY,
             terInfo: terInfo,
-            scal : scal
+            scal: scal
           })
 
         }
@@ -408,26 +504,28 @@ Page({
     }
     return markers;
   },
-  createMarker(point,id) {
-    let latitude = point.oldlat;
-    let longitude = point.oldlon;
-    let lat = latitude;
-    let lon = longitude;
+  createMarker(point, id) {
+    let latitude = point.glat;
+    let longitude = point.glon;
+    let lat = parseFloat(latitude);
+    let lon = parseFloat(longitude);
     let ro = parseInt(point.dir);
     parseInt()
     let carimg = '';
     let carimggz = point.carimggz;
-    if (carimggz =='汽车灰fs'){
+    if (carimggz == '汽车灰fs') {
       carimg = "../../static/images/car_gray_fs.png"
-    } else if (carimggz == '汽车蓝fs'){
+    } else if (carimggz == '汽车蓝fs') {
       carimg = "../../static/images/car_blue_fs.png"
-    } else if (carimggz == '汽车绿fs'){
+    } else if (carimggz == '汽车绿fs') {
       carimg = "../../static/images/car_blue_fs.png"
-    } else if (carimggz == '摩托蓝fs'){
+    } else if (carimggz == '摩托蓝fs') {
       carimg = "../../static/images/motuo_blue_fs.png"
     } else if (carimggz == '摩托灰fs') {
       carimg = "../../static/images/motuo_gray_fs.png"
-    }else {
+    } else if (carimggz == '摩托绿fs') {
+      carimg = "../../static/images/motuo_green_fs.png"
+    } else {
       carimg = "../../static/images/" + carimggz + "d.png"
     }
     let marker = {
@@ -439,32 +537,33 @@ Page({
       rotate: ro,
       width: 30,
       height: 30,
-      callout : {
+      anchor: { x: .5, y: .5 },
+      callout: {
         content: point.tname,
-        color: '#666666' ,
-        fontSize:12,
-        x:-20,
-        y:-60,
-        bgColor:'#ffffff',
-        padding:10,
-        borderRadius:5,
+        color: '#666666',
+        fontSize: 12,
+        x: -20,
+        y: -60,
+        bgColor: '#ffffff',
+        padding: 10,
+        borderRadius: 5,
         // borderWidth:20,
-        display:'ALWAYS',
+        display: 'ALWAYS',
         textAlign: 'center'
       }
     };
     return marker;
   },
-  upScal : function(){
+  upScal: function () {
     let that = this;
     let scal = that.data.scal;
-    if(scal >=5 && scal < 18){
+    if (scal >= 5 && scal < 18) {
       scal++;
-    }else{
+    } else {
       scal = 18;
     }
     that.setData({
-      scal : scal
+      scal: scal
     });
   },
   downScal: function () {
@@ -479,14 +578,14 @@ Page({
       scal: scal
     });
   },
-  appfx:function(){
+  appfx: function () {
     var that = this;
-    if (this.data.fxIsOpen == 'none'){//展开
+    if (this.data.fxIsOpen == 'none') {//展开
       that.setData({
-        fximage:'../../static/images/up_30px.png',
+        fximage: '../../static/images/up_30px.png',
         fxIsOpen: 'block'
       })
-    }else{
+    } else {
       that.setData({
         fximage: '../../static/images/right_30px.png',
         fxIsOpen: 'none'
@@ -548,7 +647,7 @@ Page({
     this.setData({ ui: ui })
   },
   handlerPageTap(e) {
-  
+
     this.hideview();
   },
   handlerAvatarTap(e) {
@@ -556,14 +655,14 @@ Page({
     if (ui.offsetLeft == 0) {
       ui.offsetLeft = ui.menuWidth;
       ui.tStart = false;
-      this.setData({ 
-        ui: ui ,
-        display:'block',
+      this.setData({
+        ui: ui,
+        display: 'block',
         display2: 'none'
-        })
+      })
     }
   },
- 
+
   // 遮拦  
   hideview: function () {
     this.setData({
@@ -576,13 +675,37 @@ Page({
       this.setData({ ui: ui })
     }
   },
-  openTerList: function(){
+  openTerList: function () {
+    clearInterval(interval)
     wx.navigateTo({
       url: '../terminalList/terminalList',
     })
   },
 
 
+  onShareAppMessage: function (ops) {
+    if (ops.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(ops.target)
+    }
+    return {
+      title: '伴车星',
+      path: 'pages/index/index',
+      success: function (res) {
+        // 转发成功
+        console.log("转发成功:" + JSON.stringify(res));
+      },
+      fail: function (res) {
+        // 转发失败
+        console.log("转发失败:" + JSON.stringify(res));
+      }
+    }
+  },
+  drawerPic2Save: function () {
+    wx.navigateTo({
+      url: '../share/share',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -597,13 +720,48 @@ Page({
    */
   onShow: function () {
     console.log("onShow")
+    var that = this;
+    var userinfo = wx.getStorageSync('userInfo');
+    interval = setInterval(function () {
+      var noFocusSelected = that.data.noFocusSelected;
+      if (noFocusSelected) {
+        that.getTerList(userinfo.vid, userinfo.vtcount, "0", '', '', userinfo.isvir)
+      } else {
+        if (userinfo.vtcount < 30) {
+          if(userinfo.vtcount >0){
+            //标注所有车，定位到中心车
+            that.getTerList(userinfo.vid, userinfo.vtcount, "0", '', '', userinfo.isvir)
+          }
+        
+
+        } else { //只显示关注的车
+          let focus = userinfo.focus;
+          if (focus > 0) {
+
+            //有关注 显示所有关注车，定位中心  
+            that.getAllFocusTer(userinfo.vid, focus, '0', '', '', userinfo.isvir)
+          } else {//无关注，进列表选一辆关注
+            that.getTerList(userinfo.vid, "30", "0", '', '', userinfo.isvir)
+            util.showToast('检测到您还未关注车辆，请前往车辆列表选取一台进行关注！')
+
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '../terminalList/terminalList',
+              })
+            }, 2000)
+
+          }
+        }
+      }
+
+    }, 10 * 1000);
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    clearInterval(interval);
   },
 
   /**

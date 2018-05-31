@@ -51,10 +51,13 @@ Page({
       }
 
     });
+    wx.showLoading({
+      title: '正在加载。。。',
+    })
     //获取设备列表
     let userinfo = wx.getStorageSync('userInfo');
-
-     this.getTerList(userinfo.vid, '30', that.data.page, '', that.data.search, userinfo.isvir)
+    this.getTerList(userinfo.vid, '30', that.data.page, '', that.data.search, userinfo.isvir)
+   
     
   },
   navcat : function(){
@@ -142,29 +145,40 @@ Page({
   
     // var preMarkers = prevPage.data.markers;
     var preMarkers = prevPage.getMarkers(allData)
-    console.log(preMarkers);
-    var centerX = allData[id].lon;
-    var centerY = allData[id].lat;
+    // console.log(preMarkers);
+    var centerX = preMarkers[id].longitude;
+    var centerY = preMarkers[id].latitude;
+    // var centerX = markers[id].longitude;
+    // var centerY = markers[id].latitude;
     prevPage.getAddress(centerX, centerY);
     if(focus == 1){
       for (var i = 0; i < preMarkers.length; i++) {
-        if (preMarkers[i].name == allData[id].tname) {
+        if (preMarkers[i].id == id) {
           preMarkers[i].callout.color = "#FF5858";
-        } else {
-          preMarkers[i].callout.color = "#666666"
-        }
+        } 
+        // else {
+        //   preMarkers[i].callout.color = "#666666"
+        // }
       }
-      wx.setStorageSync('centerTer', allData[id])
+      wx.setStorageSync('centerTer', preMarkers[id])
     } else {//首页没有 没有关注，只显示点击的
       markersdata.push(allData[id]);
       preMarkers = prevPage.getMarkers(markersdata)
+      preMarkers[0].callout.color = "#FF5858";
+      centerX = preMarkers[0].longitude;
+      centerY = preMarkers[0].latitude;
+      wx.setStorageSync('centerTer', preMarkers[0])
+      prevPage.setData({
+        noFocusSelected:true
+      });
     }
+   
     prevPage.setData({
       centerX: centerX,
       centerY: centerY,
       markers:preMarkers,
       terInfo : allData[id],
-      scal:16
+      scal:15
     });
     wx.navigateBack();   //返回上一个页面
   },
@@ -173,7 +187,16 @@ Page({
   //  let datas = [];
     
     var sha1 = util.getSHA1(vid + app.globalData.key_words);
-    var terlist = that.data.terdata;
+    var terlist = null;
+    var allData = null;
+    if(search.length>0){
+      allData = [];
+      terlist = [];
+    }else{
+      allData = that.data.allData;
+      terlist = that.data.terdata;
+    }
+
     wx.request({
       url: api.SelTerList,
       data: {
@@ -192,10 +215,10 @@ Page({
       },
       success: function (res) {
        
-        console.log("设备列表:" + JSON.stringify(res));
+        // console.log("设备列表:" + JSON.stringify(res));
         if (res.data.result == 1) {
          
-          console.log(res.data.datas.length)
+          console.log(res.data.datas)
           for (let i = 0; i < res.data.datas.length; i++) {
 
             let data = {
@@ -207,6 +230,7 @@ Page({
               sn : res.data.datas[i].sn
             }
             terlist.push(data);
+            allData.push(res.data.datas[i])
           }
           // console.log(JSON.stringify(datas))
          
@@ -220,8 +244,10 @@ Page({
           }
           that.setData({
             terdata: terlist,
-            allData: res.data.datas
+            allData: allData,
+            search:''
           });
+          wx.hideLoading()
         }
         else if (res.data.result == 0) {
         
@@ -230,8 +256,10 @@ Page({
             pull_content: '没有更多数据了'
           });
           util.showToast('没有更多数据了')
+          wx.hideLoading()
         }else{
           util.showToast('请求出错！')
+          wx.hideLoading()
 
         }
       }

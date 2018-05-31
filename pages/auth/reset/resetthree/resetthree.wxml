@@ -1,0 +1,29 @@
+<view class="container">
+
+  <view class='form-logo'>
+    <image class='logo' src='/static/images/app_blue_48px.png'></image>
+  </view>
+
+  <view class='form-box'>
+    <view class='form-item'>
+      <image src='/static/images/lock_new_30px.png' />
+      <input value="{{mobile}}" bindinput="bindPasswordInput" placeholder='请输入密码'></input>
+
+    </view>
+  </view>
+
+   <view class='form-box'>
+    <view class='form-item'>
+      <image src='/static/images/lock_check_30px.png' />
+      <input value="{{mobile}}" bindinput="bindPasswordtwoInput" placeholder='请确认密码'></input>
+
+    </view>
+  </view>
+
+   <view class='form-box'>
+    <button class='btn-login' bindtap="enterNext">
+      <text class='btn-text'>确认</text>
+    </button>
+  </view>
+  <image class='bottom' src='/static/images/city.png'></image>
+</view>

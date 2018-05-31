@@ -1,0 +1,67 @@
+<view class='page'>
+  <view class='page_row'>
+    <text>设备名称：</text>
+    <input class='page_row_input' placeholder='02ET新1' value='{{terInfo.tname}}' bindinput="bindTnameInput">02ET新1</input>
+      <!-- <image src='../../static/images/Recharge_48px.png'></image>   -->
+  </view>
+  <view class='kong'></view>
+  <view class='page_row'>
+    <text>设备型号：</text>
+    <view class='page_row_text'>{{terInfo.model}}</view>
+    <!-- <image src='../../static/images/Recharge_48px.png'></image> -->
+  </view>
+  <view class='kong'></view>
+  <view class='page_row'>
+    <text>管理账号：</text>
+   <text class='page_row_text'>{{parent}}</text>
+    <!-- <image src='../../static/images/Recharge_48px.png'></image> -->
+  </view>
+  <view class='kong'></view>
+  <view class='page_row'>
+    <text>IMEI号：</text>
+    <view class='page_row_text'>{{sn}}</view>
+     <image src='../../static/images/right_30px.png'></image> 
+  </view>
+  <view class='kong'></view>
+  <view class='page_row'>
+    <text>物联卡号码：</text>
+    <input class='page_row_input' placeholder='' value='{{terInfo.sim}}'  bindinput="bindSimInput"></input>
+    <!-- <image src='../../static/images/Recharge_48px.png'></image> -->
+  </view>
+  <view class='kong'></view>
+  <view class='page_row'>
+    <text>短信剩余数：</text>
+    <view class='page_row_text'>{{terInfo.simmsg}}</view>
+     <image src='{{imgxf}}' hidden='{{dxHidden}}'></image> 
+  </view>
+  <view class='kong'></view>
+   <view class='page_row'>
+    <text>物联卡到期：</text>
+    <!-- renew_48px -->
+    <view class='page_row_text'>{{terInfo.autotime}}</view>
+     <image src='{{imgxf}}' hidden='{{wlkHidden}}'></image> 
+  </view>
+  <view class='kong'></view>
+   <view class='page_row'>
+    <text>绑定时间：</text>
+    <view class='page_row_text'>{{terInfo.addtime}}</view>
+     <!-- <image src='../../static/images/Recharge_48px.png'></image>  -->
+  </view>
+  <view class='kong'></view>
+  <view class='page_row'>
+    <text>平台到期时间：</text>
+    <view class='page_row_text'>{{terInfo.endtime}}</view>
+      <image src='../../static/images/Recharge_48px.png' hidden='{{ptHidden}}' bindtap='xf'></image>  
+  </view>
+  <view class='kong'></view>
+   <view class='page_row'>
+    <text>备注：</text>
+    <input class='page_row_input' placeholder='暂无' value='{{terInfo.chepai}}'  bindinput="bindchepaiInput"></input>
+    <!-- <image src='../../static/images/Recharge_48px.png'></image> -->
+  </view>
+  <view class='kong'></view>
+   <view class='page_bottom'>
+      <button class='btn_save' bindtap='btn_save'>保存</button>
+  </view>
+
+</view>

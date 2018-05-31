@@ -1,0 +1,21 @@
+<view class="container">
+  <view class='form-logo'>
+    <image class='logo' src='/static/images/app_blue_48px.png'></image>
+  </view>
+  <view class='form-box'>
+    <view class='form-item'>
+      <image src='/static/images/user_50px.png' />
+      <input class="username" value="{{username}}" bindinput="bindUsernameInput" placeholder='请输入账户'></input>
+    </view>
+  </view>
+  <view class='form-box'>
+
+    <button class='btn-login' bindtap="enterNext">
+      <text class='btn-text'>下一步</text>
+    </button>
+
+  </view>
+  
+    <image class='bottom' src='/static/images/city.png'></image>
+
+</view>

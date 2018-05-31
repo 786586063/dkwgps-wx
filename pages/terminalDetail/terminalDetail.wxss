@@ -1,0 +1,82 @@
+.page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+}
+
+.page_row {
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.page_row text {
+  color: #666;
+  font-size: 28rpx;
+  font-family: MicrosoftYaHei;
+  width: 200rpx;
+}
+
+/* .page_row_input{
+
+} */
+
+.page_row input {
+  background: #f2f2f2;
+  margin-left: 28rpx;
+  color: #666;
+  font-size: 28rpx;
+  font-family: MicrosoftYaHei;
+  border-radius: 5rpx;
+  padding-left: 20rpx;
+  height: 60rpx;
+  width: 380rpx;
+}
+
+.page_row image {
+  width: 48rpx;
+  height: 48rpx;
+  margin-left: 35rpx;
+}
+
+.kong {
+  width: 100%;
+  height: 2rpx;
+  background: #f2f2f2;
+}
+
+.page_row_text {
+  margin-left: 28rpx;
+  color: #666;
+  font-size: 28rpx;
+  font-family: MicrosoftYaHei;
+  width: 380rpx;
+}
+
+.page_bottom {
+  width: 100%;
+  height: 192rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn_save {
+  /* width: 620rpx;
+  margin-right: 65rpx; */
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 80rpx;
+  align-items: center;
+  background: #48a6fe;
+  margin-right: 100rpx;
+  margin-left: 50rpx;
+  color: #fff;
+}

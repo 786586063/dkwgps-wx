@@ -1,4 +1,7 @@
 <view class="container">
+   <view class='form-logo'>
+    <image class='logo' src='/static/images/app_blue_48px.png'></image>
+  </view>
   <view class="form-box">
 
     <view class="form-item">

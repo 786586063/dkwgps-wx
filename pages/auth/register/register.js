@@ -64,7 +64,7 @@ Page({
         },
         method: 'POST',
         header: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'application/json'
         },
         success: function (res) {
          console.log(JSON.stringify(res));

@@ -1,0 +1,89 @@
+<view class="page">
+  <view class='select_time'>
+    <view class='page_row'>
+      <view class='btn_bg' data-date='1' catchtap='selectTime'>
+        <image src='../../static/images/history_today.png'></image>
+        <view>今日回放</view>
+      </view>
+      <view class='btn_bg' data-date='2' catchtap='selectTime'>
+        <image src='../../static/images/history_yesterday.png'></image>
+        <view>昨日回放</view>
+      </view>
+    </view>
+    <view class='page_row'>
+      <view class='btn_bg' data-date='3' catchtap='selectTime'>
+        <image src='../../static/images/history_before.png'></image>
+        <view>前日回放</view>
+      </view>
+      <view class='btn_bg' data-date='4' catchtap='selectTime'>
+        <image src='../../static/images/history_diy.png'></image>
+        <view>自定义回放</view>
+      </view>
+    </view>
+  </view>
+
+  <!--mask-->
+  <view class="drawer_screen" catchtap='powerDrawer' data-statu="close" wx:if="{{showModalStatus}}"></view>
+  <!--content-->
+  <!--使用animation属性指定需要执行的动画-->
+  <view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
+
+    <!--drawer content-->
+    <view class="drawer_title">日期选择</view>
+    <view class="drawer_content">
+      <view class='content_row_two'>
+
+        <view>日期选择：</view>
+        <view class='dateselect' catchtap='selectDate'>
+          <picker mode="date" value="{{date}}" start="2017-09-01" bindchange="bindDateChange">
+              {{date}}
+          </picker>
+        </view>
+      </view>
+      <view class='content_row_two'>
+        <view>时间选择:</view>
+        <view class='dateselect'>
+           <picker mode="time" value="{{startTime}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+              {{startTime}}
+          </picker>
+        </view>-
+        <view class='dateselect2'>
+           <picker mode="time" value="{{endTime}}" start="00:01" end="23:59" bindchange="bindTimeChange2">
+              {{endTime}}
+          </picker>
+        </view>
+      </view>
+
+    </view>
+    <view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</view>
+  </view>
+
+  <!-- <view class="time_screens">  
+      <view style="text-align:center;color:#45BCE8">{{year}}-{{month}}-{{day}} {{hour}}:{{minute}}<label style="float:right;margin-right:10px;">确定</label></view>  
+      <view style="border-top:1px solid #45BCE8;height:25px;font-size:14px;">  
+      <view class="time-title">年</view>  
+      <view class="time-title">月</view>  
+      <view class="time-title">日</view>  
+      <view class="time-title">时</view>  
+      <view class="time-title">分</view>  
+      </view>  
+      <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange">  
+        <picker-view-column class="picker-text">  
+          <view wx:for="{{years}}" style="line-height: 50px">{{item}}</view>  
+        </picker-view-column>  
+        <picker-view-column class="picker-text">  
+          <view wx:for="{{months}}" style="line-height: 50px">{{item}}</view>  
+        </picker-view-column>  
+        <picker-view-column class="picker-text">  
+          <view wx:for="{{days}}" style="line-height: 50px">{{item}}</view>  
+        </picker-view-column>  
+         <picker-view-column class="picker-text">  
+          <view wx:for="{{hours}}" style="line-height: 50px">{{item}}</view>  
+        </picker-view-column>  
+         <picker-view-column class="picker-text">  
+          <view wx:for="{{minutes}}" style="line-height: 50px">{{item}}</view>  
+        </picker-view-column>  
+      </picker-view>  
+    </view>   -->
+
+</view>

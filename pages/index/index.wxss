@@ -163,6 +163,36 @@ page {
   justify-content: space-between;
   align-items: center;
 }
+.content-row-btn{
+  
+  flex-direction: row;
+  width: 100%;
+ 
+  background: #fff;
+  margin-bottom: 2rpx;
+ padding-left: 30rpx;
+  padding-right: 30rpx;
+  justify-content: space-between;
+  align-items: center;
+}
+/* .shae_btn::after{
+  display: flex;
+   height: 100rpx;
+   align-items: center;
+   background: #ffffff;
+   border:none;
+    border-radius: 0;
+} */
+.shae_btn{
+  display: flex;
+   height: 100rpx;
+   align-items: center;
+   background: #ffffff;
+  border-color: #ffffff;
+}
+button::after{
+border: none;
+}
 .row-detail{
   display: flex;
   flex-direction: row;
@@ -182,7 +212,7 @@ page {
   justify-content: space-between;
   align-items: center;
 }
-.fx-image image{
+.fx-image .shae_btn image{
   width: 48rpx;
   height: 48rpx;
 }
@@ -376,8 +406,8 @@ page {
 }
 
 .info-image{
-   width: 30rpx;
-  height: 30rpx;
+   width: 32rpx;
+  height: 32rpx;
   margin-right: 10rpx;
 
 }
