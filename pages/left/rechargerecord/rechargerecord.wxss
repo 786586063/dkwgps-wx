@@ -1,0 +1,448 @@
+.container {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  height: 128rpx;
+  background:#48A6FE; 
+  align-items: flex-end;
+  padding-left: 30rpx;
+ 
+}
+
+.header image{
+  display: flex;
+  height: 30rpx;
+  width: 30rpx;
+  margin-right: 20rpx;
+  margin-bottom: 29rpx;
+}
+
+.header text{
+  color: #ffffff;
+  font-size: 34rpx;
+   margin-bottom: 20rpx;
+}
+
+.form-box{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    padding: 0 40rpx;
+    margin-bottom: 72rpx;
+    background: #fff;
+}
+
+.form-item{
+  display: flex;
+  height:auto;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+}
+
+.list-item{
+  display: flex;
+  height:auto;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+  border-radius: 10rpx;
+  border-bottom: 1px solid #d2d2d2;
+}
+
+.form-item .shaixuan{
+    display: flex;
+    flex-direction :row-reverse;
+    position: absolute; 
+    right:85rpx;
+    width: 100%;
+    align-items:center;
+    height: 72rpx;
+    color: #666666;
+    font-size: 22rpx;
+}
+
+.form-item .type{
+    display: flex;
+    position: absolute; 
+    left: 0;
+    width: 100%;
+    align-items:center;
+    padding-left: 30rpx;
+    background: #E6E6E6;
+    height: 72rpx;
+    color: #666666;
+    font-size: 24rpx;
+}
+
+.form-item .img{ 
+    position: absolute;
+    display: flex;
+    height: 30rpx;
+    width: 30rpx;
+    top: 21rpx;
+    right: 40rpx;
+    align-items:center;
+    background: #E6E6E6;
+    color: #666666;
+}
+
+.list-item .money{
+    display: flex;
+    position: relative; 
+    top: 0rpx;
+    left: 0;
+    width: 100%;
+    align-items:center;
+    padding-left: 30rpx;
+    margin-right: 20rpx;
+  margin-left: 20rpx;
+    height: 120rpx;
+    color: #333333;
+    font-size: 34rpx;
+    font: bold;
+} 
+
+.list-item .types{
+    display: flex;
+    flex-direction :row-reverse;
+    position:relative; 
+    width: 100%;
+    margin-right: 70rpx;
+    margin-left: 20rpx;
+    align-items:center;
+    text-align: center; 
+    height: 120rpx;
+    color: #666666;
+    font-size: 24rpx;
+} 
+
+.list-item .time{
+    display: flex;
+    flex-direction :row-reverse;
+    position:relative; 
+    top: 0rpx;
+    right:100rpx;
+    width: 100%;
+    margin-right: 20rpx;
+  margin-left: 20rpx;
+    align-items:center;
+    height: 100rpx;
+    color: #999999;
+    font-size: 22rpx;
+} 
+
+.line{
+   position:relative; 
+   width:100%;
+   height:1rpx;
+   background:#e6e6e6;
+   top:0rpx;
+}
+
+
+/* 显示与隐藏 */
+.show {
+   display: block;
+}
+.hidden {
+ display: none;
+}
+
+.weui-grids {  
+  position: relative; 
+  overflow: hidden;  
+} 
+
+.weui-grids .tianchong{
+  position: relative; 
+  overflow: hidden;
+  background: #e6e6e6; 
+  padding: 10rpx 25rpx;
+} 
+
+.weui-grids:before {  
+  content: " ";  
+  position: absolute;  
+  left: 0;  
+  top: 0;  
+  right: 0;  
+  height: 1px;  
+  border-top: 0px solid #D9D9D9;  
+  color: #D9D9D9;  
+  -webkit-transform-origin: 0 0;  
+          transform-origin: 0 0;  
+  -webkit-transform: scaleY(0.5);  
+          transform: scaleY(0.5);  
+}  
+.weui-grids:after {  
+  content: " ";  
+  position: absolute;  
+  left: 0;  
+  top: 0;  
+  width: 1px;  
+  bottom: 0;  
+  border-left: 0px solid #D9D9D9;  
+  color: #D9D9D9;  
+  -webkit-transform-origin: 0 0;  
+          transform-origin: 0 0;  
+  -webkit-transform: scaleX(0.5);  
+          transform: scaleX(0.5);  
+}  
+.weui-grid {  
+  position: relative;  
+  float: left;  
+  padding: 10rpx 5rpx;  
+  width: 33.33333333%;
+  background: #e6e6e6;
+  box-sizing: border-box;  
+}  
+.weui-grid:before {  
+  content: " ";  
+  position: absolute;  
+  right: 0;  
+  top: 0;  
+  width: 1px;  
+  bottom: 0;  
+  border-right: 0px solid #D9D9D9;  
+  color: #D9D9D9;  
+  -webkit-transform-origin: 100% 0;  
+          transform-origin: 100% 0;  
+  -webkit-transform: scaleX(0.5);  
+          transform: scaleX(0.5);  
+}  
+.weui-grid:after {  
+  content: " ";  
+  position: absolute;  
+  left: 0;  
+  bottom: 0;  
+  right: 0;  
+  height: 1px;  
+  border-bottom: 0px solid #D9D9D9;  
+  color: #D9D9D9;  
+  -webkit-transform-origin: 0 100%;  
+          transform-origin: 0 100%;  
+  -webkit-transform: scaleY(0.5);  
+          transform: scaleY(0.5);  
+}  
+  
+.weui-grid__icon {  
+  width: 225rpx;  
+  height: 80rpx;  
+  margin: 0 auto;  
+}  
+.weui-grid__icon image {  
+  display: block;  
+  width: 100%;  
+  height: 100%;  
+}  
+.weui-grid__icon + .weui-grid__label {  
+  margin-top: 0rpx;  
+}  
+
+
+.weui-grid__icon .weui-grid__label {  
+  position: absolute;
+  display: block; 
+  text-align: center; 
+  bottom:30rpx; 
+  left:90rpx;
+  font-weight: bold;  
+  color: #000000;  
+  font-size: 26rpx;  
+  white-space: nowrap;  
+  text-overflow: ellipsis;  
+  overflow: hidden;  
+}
+
+.wlwk{
+  position: absolute;
+  display: block; 
+  text-align: center; 
+  bottom:140rpx; 
+  left:325rpx;
+  font-weight: bold;  
+  color: #000000;  
+  font-size: 26rpx;  
+  white-space: nowrap;  
+  text-overflow: ellipsis;  
+  overflow: hidden; 
+}
+
+.weui-grid__icon .tianchong{
+  height:10rpx;
+  width:25rpx;
+  background: e6e6e6;
+}
+
+.icon {  
+  position: relative; 
+  overflow: hidden; 
+  padding-bottom: 20rpx; 
+  background: #e6e6e6;
+} 
+
+.icon .tianchong{
+  position: relative; 
+  overflow: hidden;
+  background: #e6e6e6; 
+  padding: 20rpx 30rpx;
+}
+.icon .tianchongtwo{
+  position: relative; 
+  overflow: hidden;
+  background: #e6e6e6; 
+  padding: 0rpx 30rpx;
+}
+
+.icon .iconimg { 
+  display: block; 
+  height:80rpx;
+  width:260rpx; 
+}
+
+.icon .iconimgtwo { 
+  display: block; 
+  height:80rpx;
+  width:420rpx; 
+  position: absolute; 
+  overflow: hidden;
+  background: #e6e6e6; 
+  left:310rpx;
+  top:20rpx; 
+}
+
+.icon .iconimgthree { 
+  display: block; 
+  height:80rpx;
+  width:420rpx; 
+  position: absolute; 
+  overflow: hidden;
+  background: #e6e6e6; 
+  left:310rpx;
+  top:0rpx; 
+}
+
+.icon .timesel{
+  position: absolute;
+  display: block; 
+  text-align: center; 
+  bottom:40rpx; 
+  left:100rpx;
+  font-weight: bold;  
+  color: #000000;  
+  font-size: 26rpx;  
+  white-space: nowrap;  
+  text-overflow: ellipsis;  
+  overflow: hidden;
+}
+
+.icon .timeseltwo{
+  position: absolute;
+  display: block; 
+  text-align: center; 
+  bottom:20rpx; 
+  left:100rpx;
+  font-weight: bold;  
+  color: #000000;  
+  font-size: 26rpx;  
+  white-space: nowrap;  
+  text-overflow: ellipsis;  
+  overflow: hidden;
+}
+
+.icon .dates{
+  position: absolute;
+  display: block; 
+  text-align: center; 
+  bottom:40rpx; 
+  left:450rpx;
+  font-weight: bold;  
+  color: #000000;  
+  font-size: 26rpx;  
+  white-space: nowrap;  
+  text-overflow: ellipsis;  
+  overflow: hidden;
+}
+
+.icon .datestwo{
+  position: absolute;
+  display: block; 
+  text-align: center; 
+  bottom:20rpx; 
+  left:450rpx;
+  font-weight: bold;  
+  color: #000000;  
+  font-size: 26rpx;  
+  white-space: nowrap;  
+  text-overflow: ellipsis;  
+  overflow: hidden;
+}
+
+.icon .iconCalone { 
+  display: block; 
+  height:30rpx;
+  width:30rpx; 
+  position: absolute; 
+  overflow: hidden;
+  background: #e6e6e6; 
+  left:55rpx;
+  top:47rpx; 
+}
+
+.icon .iconCaltwo { 
+  display: block; 
+  height:30rpx;
+  width:30rpx; 
+  position: absolute; 
+  overflow: hidden;
+  background: #e6e6e6; 
+  left:55rpx;
+  top:27rpx; 
+}
+
+.bts{
+  background: #ffffff;
+}
+
+.bts .cancel { 
+  display: block; 
+  height:80rpx;
+  width:330rpx; 
+  position: absolute; 
+  overflow: hidden;
+  background: #e6e6e6; 
+  left:30rpx;
+  top:610rpx; 
+}
+
+.bts .confirm { 
+  display: block; 
+  height:80rpx;
+  width:330rpx; 
+  position: absolute; 
+  overflow: hidden;
+  background: #e6e6e6; 
+  left:390rpx;
+  top:610rpx;  
+}
+
+.bck{
+   position: relative;
+   background: #ABABAB; 
+   height: 410rpx;
+   width: 100%;
+   top:100rpx ;
+}
+
+
+
+

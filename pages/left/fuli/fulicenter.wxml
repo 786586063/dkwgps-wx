@@ -1,0 +1,15 @@
+<view class="container">
+<block wx:for="{{activities}}" wx:if="{{item.title!=null}}">
+<view class="list-item">
+<view class='form-item' >
+       <text class='title' id="img{{index}}" bindtap="bigimg">{{item.title}}</text>
+</view>
+<view class='form-item' >
+      <text class='content' id="img{{index}}" bindtap="bigimg">{{item.content}}</text>
+</view>
+<view class='form-item'>
+      <text class='time' id="img{{index}}" bindtap="bigimg">{{item.time}}</text>
+</view>
+</view>
+ </block>
+</view>

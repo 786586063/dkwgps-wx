@@ -2,6 +2,7 @@
 var api = require('../../config/api.js');
 var util = require('../../utils/util.js');
 var user = require('../../services/user.js');
+var WxNotificationCenter = require('../../utils/WxNotificationCenter.js');
 const MENU_WIDTH_SCALE = 0.7;
 const FAST_SPEED_SECOND = 100;
 const FAST_SPEED_DISTANCE = 5;
@@ -38,7 +39,9 @@ Page({
     scrollHeight: '1000',
     location_btn: 'location1_btn',
     eyes_btn: 'eyes_btn',
-    noFocusSelected:false
+    noFocusSelected:false,
+    otherFunction:true,
+    isinclude:false
   },
 
   /**
@@ -54,38 +57,17 @@ Page({
         });
       }
     });
-
+    WxNotificationCenter.addNotification('NotificationName', that.didNotification, that) 
     //检查是否登录
     var userinfo = wx.getStorageSync('userInfo');
     if (userinfo != null && userinfo != '') {
 
       //获取账号下的总设备
       let vtcount = userinfo.vtcount;
-
-     
-      if (vtcount < 30) {
-        if(vtcount >0){
-          //标注所有车，定位到中心车
+      if(vtcount >0){
+        if(userinfo.focus > 0){
           that.getTerList(userinfo.vid, vtcount, "0", '', '', userinfo.isvir)
         }else{
-          util.showToast('检测到您账号下还未绑定设备，请先前往绑定！')
-
-          setTimeout(function () {
-            wx.navigateTo({
-              url: '../addterminal/addterminal',
-            })
-          }, 2000)
-        }
-       
-
-      } else { //只显示关注的车
-        let focus = userinfo.focus;
-        if (focus > 0) {
-
-          //有关注 显示所有关注车，定位中心  
-          that.getAllFocusTer(userinfo.vid, focus, '0', '', '', userinfo.isvir)
-        } else {//无关注，进列表选一辆关注
-          that.getTerList(userinfo.vid, "30", "0", '', '', userinfo.isvir)
           util.showToast('检测到您还未关注车辆，请前往车辆列表选取一台进行关注！')
 
           setTimeout(function () {
@@ -93,9 +75,46 @@ Page({
               url: '../terminalList/terminalList',
             })
           }, 2000)
-
         }
+        
+      }else{
+        util.showToast('检测到您账号下还未绑定设备，请先前往绑定！')
+
+        setTimeout(function () {
+          wx.navigateTo({
+            url: '../addterminal/addterminal',
+          })
+        }, 2000)
       }
+      
+     
+      // if (vtcount < 30) {
+      //   if(vtcount >0){
+      //     //标注所有车，定位到中心车
+         
+      //   }else{
+        
+      //   }
+       
+
+      // } else { //只显示关注的车
+      //   let focus = userinfo.focus;
+      //   if (focus > 0) {
+
+      //     //有关注 显示所有关注车，定位中心  
+      //     that.getAllFocusTer(userinfo.vid, focus, '0', '', '', userinfo.isvir)
+      //   } else {//无关注，进列表选一辆关注
+      //     that.getTerList(userinfo.vid, "30", "0", '', '', userinfo.isvir)
+      //     util.showToast('检测到您还未关注车辆，请前往车辆列表选取一台进行关注！')
+
+      //     setTimeout(function () {
+      //       wx.navigateTo({
+      //         url: '../terminalList/terminalList',
+      //       })
+      //     }, 2000)
+
+      //   }
+      // }
       // interval = setInterval(function () {
       //   var noFocusSelected = that.data.noFocusSelected;
       //   if(noFocusSelected){
@@ -156,7 +175,20 @@ Page({
     }
 
   },
+  onUnload: function () {
+    //移除通知
+    var that = this
+    WxNotificationCenter.removeNotification('NotificationName', that)
+  },
+  didNotification:function(obj){
 
+  },
+
+  more_btn:function(){
+    this.setData({
+      otherFunction:false
+    })
+  },
   switchUser: function () {
     wx.clearStorageSync('userInfo');
     wx.navigateTo({
@@ -202,7 +234,8 @@ Page({
     let markers = that.data.markers;
     that.setData({
       include: markers,
-      scal: 5
+      scal: 5,
+      isinclude:true
     });
   },
   localtion: function () {
@@ -275,7 +308,13 @@ Page({
     var that = this;
     var allData = that.data.allFocusTer;
     var markers = that.data.markers;
-    var selectTer = allData[id];
+    var selectTer ={};
+    for(var item of allData){
+      if(item.tname == markers[id].callout.content){
+        selectTer = item;
+        break;
+      }
+    }
     //更改中心车位置
     var centerX = markers[id].longitude;
     var centerY = markers[id].latitude;
@@ -297,7 +336,8 @@ Page({
       centerY: centerY,
       scal: 15,
       terInfo: selectTer,
-      markers: markers
+      markers: markers,
+      isinclude:false
     });
 
   },
@@ -337,6 +377,8 @@ Page({
     var sha1 = util.getSHA1(vid + app.globalData.key_words);
 
     var allFocusTer = that.data.allFocusTer;
+    var isinclude = that.data.isinclude;
+    var userinfo = wx.getStorageSync('userInfo');
     wx.request({
       url: api.SelTerList,
       data: {
@@ -361,25 +403,26 @@ Page({
           let centerY = '';
           console.log(res.data.datas.length)
           allFocusTer = res.data.datas;
+          
           let center = wx.getStorageSync('centerTer');
           let m =[];
           if (that.data.noFocusSelected){
             m.push(center);
-          }else{
+          }else{ 
             m = that.getMarkers(allFocusTer)
-          }
-          
-          let terInfo = '';
-         
-          // console.log()
+          }   
+          let terInfo = {};
           let scal = '15';
           if (center == null || center == '') {
-            // console.log(allFocusTer[0]);
-            terInfo = allFocusTer[0];
+           
+            for (var item of allFocusTer ){
+              if (item.tname == m[0].callout.content){
+                terInfo = item;
+                break;
+              }
+            }
             centerX = m[0].longitude;
             centerY = m[0].latitude;
-
-            // terInfo.address = util.getAddress(centerX, centerY);
           } else {
 
             centerX = center.longitude;
@@ -387,7 +430,14 @@ Page({
             for (var i = 0; i < m.length; i++) {
               if (m[i].callout.content == center.callout.content) {
                 m[i].callout.color = "#FF5858";
-                terInfo = allFocusTer[i];
+                // terInfo = allFocusTer[i];
+                break;
+              }
+            }
+            for (var item of allFocusTer) {
+              if (item.tname == center.callout.content) {
+                terInfo = item;
+                break;
               }
             }
             scal = 15;
@@ -398,8 +448,8 @@ Page({
             markers: m,
             centerX: centerX,
             centerY: centerY,
-            terInfo: terInfo,
-            scal: scal
+            terInfo: terInfo
+            // scal: scal
           })
 
         }
@@ -420,6 +470,7 @@ Page({
 
     var sha1 = util.getSHA1(vid + app.globalData.key_words);
     var allFocusTer = that.data.allFocusTer;
+    var isinclude = that.data.isinclude;
     wx.request({
       url: api.SelTerFocusList,
       data: {
@@ -440,47 +491,58 @@ Page({
 
         // console.log("设备列表:" + JSON.stringify(res));
         if (res.data.result == 1) {
-          let centerX = '';
-          let centerY = '';
-          console.log(res.data.datas.length)
+         
           allFocusTer = res.data.datas;
+          console.log(allFocusTer[0])
           let m = that.getMarkers(allFocusTer)
-          console.log(m)
-          let terInfo = '';
-          let center = wx.getStorageSync('centerTer');
-          // console.log()
-          let scal = '15';
-          if (center == null || center == '') {
-            console.log(allFocusTer[0]);
-            terInfo = allFocusTer[0];
-            centerX = m[0].longitude;
-            centerY = m[0].latitude;
+          // if (isinclude){
+          //   that.setData({
+          //     include:m
+          //   })
+          // }else{
+            let centerX = '';
+            let centerY = '';
+            // console.log(res.data.datas.length)
+            // allFocusTer = res.data.datas;
+            // let m = that.getMarkers(allFocusTer)
+            // console.log(m)
+            let terInfo = '';
+            let center = wx.getStorageSync('centerTer');
+            // console.log()
+            let scal = that.data.scal;
+            if (center == null || center == '') {
+              console.log(allFocusTer[0]);
+              terInfo = allFocusTer[0];
+              centerX = m[0].longitude;
+              centerY = m[0].latitude;
 
-          } else {
-            for (var item of allFocusTer) {
-              if (item.tname == center.name) {
-                terInfo = item;
+            } else {
+              for (var item of allFocusTer) {
+                if (item.tname == center.name) {
+                  terInfo = item;
+                }
               }
-            }
 
-            centerX = center.longitude;
-            centerY = center.latitude;
-            for (var i = 0; i < m.length; i++) {
-              if (m[i].callout.content == center.name) {
-                m[i].callout.color = "#FF5858";
+              centerX = center.longitude;
+              centerY = center.latitude;
+              for (var i = 0; i < m.length; i++) {
+                if (m[i].callout.content == center.name) {
+                  m[i].callout.color = "#FF5858";
+                }
               }
+              // scal = 15;
             }
-            scal = 15;
-          }
-          that.getAddress(centerX, centerY)
-          that.setData({
-            allFocusTer: allFocusTer,
-            markers: m,
-            centerX: centerX,
-            centerY: centerY,
-            terInfo: terInfo,
-            scal: scal
-          })
+            that.getAddress(centerX, centerY)
+            that.setData({
+              allFocusTer: allFocusTer,
+              markers: m,
+              centerX: centerX,
+              centerY: centerY,
+              terInfo: terInfo
+              // scal: scal
+            })
+          // }
+         
 
         }
         else if (res.data.result == 0) {
@@ -495,13 +557,26 @@ Page({
   },
   getMarkers(datas) {
     let markers = [];
+   
     // let datas = this.data.allFocusTer
+
     let index = 0;
-    for (let item of datas) {
-      let marker = this.createMarker(item, index);
-      markers.push(marker);
-      index++;
+    if (datas.length < 30) {
+      for (let item of datas) {
+          let marker = this.createMarker(item, index);
+          markers.push(marker);
+          index++;
+      }
+    }else{
+      for (let item of datas) {
+        if (item.focus == 1) {
+          let marker = this.createMarker(item, index);
+          markers.push(marker);
+          index++;
+        }
+      }
     }
+    
     return markers;
   },
   createMarker(point, id) {
@@ -591,6 +666,24 @@ Page({
         fxIsOpen: 'none'
       })
     }
+  },
+  transfer_btn:function(){
+    var that  = this;
+    var terInfo = that.data.terInfo;
+    console.log(terInfo);
+    var t_id = terInfo.t_id;
+    var tname = terInfo.tname;
+    var parent = terInfo.parent
+    wx.navigateTo({
+      url: '../upTerTo/upTerTo?t_id='+t_id+'&tname='+tname+'&parent='+parent,
+      complete: function (res) { 
+        that.setData({
+          otherFunction:true
+        })
+      }
+     
+    })
+   
   },
   handlerStart(e) {
     let { clientX, clientY } = e.touches[0];
@@ -719,40 +812,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("onShow")
+
     var that = this;
+    var markers = that.data.markers;
+    that.setdata({
+      markers:markers
+    })
     var userinfo = wx.getStorageSync('userInfo');
     interval = setInterval(function () {
       var noFocusSelected = that.data.noFocusSelected;
-      if (noFocusSelected) {
-        that.getTerList(userinfo.vid, userinfo.vtcount, "0", '', '', userinfo.isvir)
-      } else {
-        if (userinfo.vtcount < 30) {
-          if(userinfo.vtcount >0){
-            //标注所有车，定位到中心车
-            that.getTerList(userinfo.vid, userinfo.vtcount, "0", '', '', userinfo.isvir)
-          }
-        
-
-        } else { //只显示关注的车
-          let focus = userinfo.focus;
-          if (focus > 0) {
-
-            //有关注 显示所有关注车，定位中心  
-            that.getAllFocusTer(userinfo.vid, focus, '0', '', '', userinfo.isvir)
-          } else {//无关注，进列表选一辆关注
-            that.getTerList(userinfo.vid, "30", "0", '', '', userinfo.isvir)
-            util.showToast('检测到您还未关注车辆，请前往车辆列表选取一台进行关注！')
-
-            setTimeout(function () {
-              wx.navigateTo({
-                url: '../terminalList/terminalList',
-              })
-            }, 2000)
-
-          }
-        }
-      }
+      //获取账号下的总设备
+      let vtcount = userinfo.vtcount;
+      if (vtcount > 0) {
+        if (userinfo.focus > 0) {
+          that.getTerList(userinfo.vid, vtcount, "0", '', '', userinfo.isvir)
+        } 
+      } 
 
     }, 10 * 1000);
   },

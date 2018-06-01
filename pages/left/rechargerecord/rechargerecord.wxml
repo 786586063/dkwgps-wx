@@ -1,0 +1,24 @@
+<view class="container">
+  <view class="form-box">
+    <view class='form-item' wx:for="{{routers}}" wx:key="name">
+        <view wx:if="{{item.sel=='true'}}">
+        <view wx:if="{{item.name==''}}">
+          <text class='type'>充值类型:物联网卡</text>
+        </view>
+        <view wx:if="{{item.name!=''}}">
+          <text class='type'>充值类型:{{types}}</text>
+          </view>
+        </view>
+        <text class='shaixuan'>时间:{{starttime}}~{{endtime}}</text>
+         <navigator url='../shaixuan/shaixuan'>
+        <image class="img" src='/static/images/screen_gray_30px.png'></image>
+       </navigator>
+    </view>
+  </view>
+<block wx:for="{{array}}" wx:if="{{item.money!=null}}">
+<view class='list-item'>
+       <text class='money'>{{item.money}}<text style='font-size: 22rpx; color:#000000;'>{{item.yuan}}</text></text>
+       <text class='types'>{{item.types}}\r\n<text style='font-size: 22rpx; color:#999999;'>{{item.time}}</text></text>
+</view>
+ </block>
+</view>

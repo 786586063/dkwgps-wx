@@ -2,6 +2,7 @@
 var api = require('../../config/api.js');
 var util = require('../../utils/util.js');
 var user = require('../../services/user.js');
+var WxNotificationCenter = require('../../utils/WxNotificationCenter.js');
 var app = getApp() 
 
 //获取设备列表
@@ -133,6 +134,7 @@ Page({
   },
   selectTer : function(e){
     var that = this;
+    // WxNotificationCenter.postNotificationName('NotificationName', obj)
     var pages = getCurrentPages();
     var markersdata = [];
     // var currPage = pages[pages.length - 1];   //当前页面
@@ -142,29 +144,34 @@ Page({
     // console.log(allData);
     //判断设备是否被关注，关注了显示所有关注的，定位到点击的
     var focus = allData[id].focus;
-  
+     console.log(allData[id]);
     // var preMarkers = prevPage.data.markers;
     var preMarkers = prevPage.getMarkers(allData)
-    // console.log(preMarkers);
-    var centerX = preMarkers[id].longitude;
-    var centerY = preMarkers[id].latitude;
-    // var centerX = markers[id].longitude;
-    // var centerY = markers[id].latitude;
-    prevPage.getAddress(centerX, centerY);
+   
+    var centerX = '';
+    var centerY = '';
+
+    
     if(focus == 1){
       for (var i = 0; i < preMarkers.length; i++) {
-        if (preMarkers[i].id == id) {
+        if (preMarkers[i].callout.content == allData[id].tname) {
           preMarkers[i].callout.color = "#FF5858";
+          centerX = preMarkers[i].longitude;
+          centerY = preMarkers[i].latitude;
+          wx.setStorageSync('centerTer', preMarkers[i])
+         
+          console.log(allData[id])
+          console.log(preMarkers[i])
+          break;
         } 
-        // else {
-        //   preMarkers[i].callout.color = "#666666"
-        // }
+       
       }
-      wx.setStorageSync('centerTer', preMarkers[id])
+     
     } else {//首页没有 没有关注，只显示点击的
       markersdata.push(allData[id]);
       preMarkers = prevPage.getMarkers(markersdata)
       preMarkers[0].callout.color = "#FF5858";
+      console.log(preMarkers[0])
       centerX = preMarkers[0].longitude;
       centerY = preMarkers[0].latitude;
       wx.setStorageSync('centerTer', preMarkers[0])
@@ -172,15 +179,22 @@ Page({
         noFocusSelected:true
       });
     }
-   
+    prevPage.getAddress(centerX, centerY);
     prevPage.setData({
       centerX: centerX,
       centerY: centerY,
       markers:preMarkers,
       terInfo : allData[id],
-      scal:15
+      scal:18
     });
-    wx.navigateBack();   //返回上一个页面
+    wx.showLoading({
+      title: '加载中',
+    })
+    setTimeout(function(){
+      wx.navigateBack();   //返回上一个页面
+      wx.hideLoading()
+    },1000)
+    
   },
   getTerList:function(vid,cout,page,sn,search,isvir){
     var that = this;

@@ -160,7 +160,7 @@ Page({
           terInfo = res.data.datas;
           var wlkHidden = that.data.wlkHidden;
           var ptHidden = that.data.ptHidden;
-          if (terInfo.endtime.split('-')[0] == '2030'){
+          if (terInfo.endtime.split('/')[0] == '2030'){
             terInfo.endtime = '终身';
             //隐藏平台续费按钮'
             ptHidden = true;
@@ -170,7 +170,7 @@ Page({
           }else{
             wlkHidden = true;
           }
-          if (terInfo.autotime.split('-')[0] == '2030'){
+          if (terInfo.autotime.split('/')[0] == '2030'){
             terInfo.autotime = '终身'
             //隐藏物联卡到期续费按钮
             wlkHidden = false;

@@ -1,0 +1,189 @@
+.container {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  height: 128rpx;
+  background: #48a6fe;
+  align-items: flex-end;
+  padding-left: 30rpx;
+}
+
+.header image{
+  display: flex;
+  height: 30rpx;
+  width: 30rpx;
+  margin-right: 20rpx;
+  margin-bottom: 29rpx;
+}
+
+.header text{
+  color: #ffffff;
+  font-size: 34rpx;
+   margin-bottom: 20rpx;
+}
+
+.form-box{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    padding: 0 40rpx;
+    margin-top: 96rpx;
+    background: #fff;
+}
+
+.form-item{
+  display: flex;
+  height:auto;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+}
+
+.form-item .mobile, .form-item .code{
+    position: absolute;
+    top: 26rpx;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 44rpx;
+    background: #fff;
+    color: #333;
+    font-size: 30rpx;
+}
+
+.form-item-code{
+    margin-top:32rpx;
+    height: auto;
+    overflow: hidden;
+    width: 100%;
+}
+
+.form-item-code .form-item{
+    float: left;
+    width: 350rpx;
+}
+
+.form-item-code .code-btn{
+    float: right;
+    padding: 20rpx 40rpx;
+    border: 1px solid #d9d9d9;
+    border-radius: 10rpx;
+}
+
+.form-item .clear{
+    position: absolute;
+    top: 26rpx;
+    right: 18rpx;
+    z-index: 2;
+    display: block;
+    background: #fff;
+    height: 44rpx;
+    width: 44rpx;
+}
+
+.form-item .midlogo{
+    position: absolute;
+    top: 198rpx;
+    right: 300rpx;
+    left: 300rpx;
+    z-index: 2;
+    display: block;
+    background: #fff;
+    height: 150rpx;
+    width: 150rpx;
+    justify-content: center;
+}
+
+.form-item .inputBac{
+    position: absolute;
+    top: 440rpx;
+    left: 65rpx;
+    right: 65rpx;
+    height: 62rpx;
+    width: 620rpx;
+}
+
+.form-item .inputBactwo{
+    position: absolute;
+    top: 542rpx;
+    left: 65rpx;
+    right: 65rpx;
+    height: 62rpx;
+    width: 620rpx;
+}
+
+.form-item .inputBacthree{
+    position: absolute;
+    top: 461rpx;
+    left: 85rpx;
+    right: 65rpx;
+    height: 20rpx;
+    width: 20rpx;
+}
+
+.form-item .inputBacfour{
+    position: absolute;
+    top: 563rpx;
+    left: 85rpx;
+    right: 65rpx;
+    height: 20rpx;
+    width: 20rpx;
+}
+
+.form-item .password{
+    position: absolute;
+    top: 440rpx;
+    left: 125rpx;
+    right: 65rpx;
+    height: 62rpx;
+    width: 620rpx;
+    color: #999999;
+    font-size: 26rpx;
+}
+
+.form-item .repassword{
+    position: absolute;
+    top: 542rpx;
+    left: 125rpx;
+    right: 65rpx;
+    height: 62rpx;
+    width: 620rpx;
+    color: #999999;
+    font-size: 26rpx;
+}
+
+.form-item .buttonImg{
+    position: absolute;
+    top: 660rpx;
+    left: 65rpx;
+    right: 65rpx;
+    height: 72rpx;
+    width: 620rpx;
+    color: #ffffff;
+    font-size: 30rpx;
+}
+
+.form-item .reset-btn{
+    position: absolute;
+    top:676rpx;
+    left: 345rpx;
+    right: 360rpx;
+    font-size: 30rpx;
+    width: 100%;
+    color: #ffffff;
+    align-items:center;
+    justify-content:center;
+} 
+
+button::after{  
+  border: none;  
+  border-radius: 0;  
+} 

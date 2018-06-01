@@ -1,0 +1,137 @@
+<view class="container">
+  <view class="form-box">
+    <view class='form-item' wx:for="{{routers}}" wx:key="name">
+        <dl class="list">
+        <dd>
+          <ul><li><text class="words">交易类型选择</text></li>
+              <li> 
+<view class="container">  
+  <view class="weui-grids"> 
+  <view class="tianchong"> 
+    <view class="weui-grid" wx:for="{{routers}}" wx:key="name"> 
+    <view class="weui-grid__icon" wx:if="{{item.sel=='true'}}"> 
+           <image id="img_{{index}}" src="/static/images/btn_332px_normal@3x.png" mode="scaleToFill" bindtap='switchs'/>
+           <view class="weui-grid__icon" wx:if="{{item.types=='1'}}">
+            <text id="text_{{index}}" class="weui-grid__label" style="color:#ffffff;left:70rpx;" bindtap='switchs'>{{item.name}}</text>
+            </view>
+            <view class="weui-grid__icon" wx:else>
+            <text id="text_{{index}}" class="weui-grid__label" style="color:#ffffff;" bindtap='switchs'>{{item.name}}</text>
+            </view>
+    </view>
+        <view class="weui-grid__icon" wx:if="{{item.sel=='false'}}"> 
+          <image id="img_{{index}}" src=" {{item.icon}}" mode="scaleToFill" bindtap='switchs'/>
+            <view class="weui-grid__icon" wx:if="{{item.types=='1'}}">
+            <text id="text_{{index}}" class="weui-grid__label" style="color:#666666;left:70rpx;" bindtap='switchs'>{{item.name}}</text>
+            </view>
+            <view class="weui-grid__icon" wx:else>
+            <text id="text_{{index}}" style="color:#666666;" class="weui-grid__label" bindtap='switchs'>{{item.name}}</text> 
+            </view> 
+        </view>       
+    </view> 
+    </view> 
+  </view>  
+</view> </li>
+<li><text class="words">交易时间选择</text></li>
+ <li> 
+ <view class="icon"> 
+   <view class="tianchong">
+    <image src="/static/images/btn_225px_normal.png" class="iconimg" bindtap="tapMainMenu"/>
+    <image src="/static/images/calendar_blue_30px.png" class="iconCalone" bindtap="tapMainMenu"/>
+    <text class="timesel" style="color:#666666;" bindtap="tapMainMenu">选择开始时间</text>
+    <image src="/static/images/btn_225px_normal.png" class="iconimgtwo"/>
+    <text style="color:#666666;" class="dates">{{startdate}}</text>
+   </view>
+   <view class="tianchongtwo">
+    <image src="/static/images/btn_225px_normal.png" class="iconimg" bindtap="tapMainMenutwo"/>
+     <image src="/static/images/calendar_red_30px.png" class="iconCaltwo" bindtap="tapMainMenutwo"/>
+    <text class="timeseltwo" style="color:#666666;" bindtap="tapMainMenutwo">选择结束时间</text>
+    <image src="/static/images/btn_225px_normal.png" class="iconimgthree"/>
+    <text style="color:#666666;" class="datestwo">{{enddate}}</text>
+   </view>
+ </view>
+</li>
+<li>
+<view class="bts">
+<image src="/static/images/btn_332px_whight@3x.png" class="cancel"/>
+<text style="position:relative;left:160rpx;top:-35rpx;font-size: 30rpx;color:#666666;"bindtap="cancel">取消</text>
+<image src="/static/images/btn_332px_normal@3x.png" class="confirm"/>
+<text style="position:relative;left:525rpx;bottom:150rpx;font-size: 30rpx;color:#ffffff;" bindtap="confirm">确认</text>
+</view>
+</li>
+<li><view class="bck">
+<view class="{{subMenuDisplay}}"> 
+  <view class="headcal"> 
+      <picker value="{{date}}"
+          bindchange="bindPickerChange"
+          fields="month"
+          mode="date"
+          start="1990-01-01"
+          end="2025-12-31">
+      <view class="picker"> <text class="months">{{selmonth}}月</text>
+      <text class="days">{{selday}}日\t{{selweek}}</text>
+      <text class="years">{{selyear}}年</text></view>
+    </picker>
+      <image src="/static/images/close_whight_30px.png" class="close" bindtap="close"/>
+   </view>
+   <view class="calendar">
+  <view class="week">
+    <view wx:for="{{week}}" wx:key="{{item}}" class="week-item">
+      <text style="font-size: 22rpx;color: #999999;">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="month">
+    <view wx:for="{{months}}" wx:key="{{item}}" class="month-item" data-item="{{item}}" bindtap="click">
+    <view wx:if="{{item.startsel=='true'}}">
+           <image src="/static/images/day_48px.png" class="bulesel"/>
+           <text  id='m{{index}}' style=" position:relative;font-size:22rpx;color:#ffffff;">{{item.num}}</text>
+    </view>
+    <view wx:if="{{item.startsel=='false'}}">
+      <text  id='m{{index}}' style="position:relative;font-size:22rpx;color:#666666;">{{item.num}}</text>
+    </view>
+    </view>
+  </view>
+
+</view>
+</view>
+<view class="{{subMenuDisplaytwo}}"> 
+  <view class="headcal"> 
+      <picker value="{{date}}"
+          bindchange="bindPickerChangetwo"
+          fields="month"
+          mode="date"
+          start="1990-01-01"
+          end="2025-12-31">
+      <view class="picker"> <text class="months">{{selmonthtwo}}月</text>
+       <text class="days">{{seldaytwo}}日\t{{selweek}}</text>
+      <text class="years">{{selyeartwo}}年</text></view>
+    </picker>
+          <image src="/static/images/close_whight_30px.png" class="close" bindtap="closetwo"/>
+   </view>
+   <view class="calendar">
+  <view class="week">
+    <view wx:for="{{week}}" wx:key="{{item}}" class="week-item">
+      <text style="font-size: 22rpx;color: #999999;">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="month">
+    <view wx:for="{{months}}" wx:key="{{item}}" class="month-item" data-item="{{item}}" bindtap="clicktwo">
+    <view wx:if="{{item.endsel=='true'}}">
+           <image src="/static/images/day_48px.png" class="bulesel"/>
+           <text id='m{{index}}' style=" position:relative;font-size:22rpx;color:#ffffff;">{{item.num}}</text>
+    </view>
+     <view wx:if="{{item.endsel=='false'}}">
+        <text id='m{{index}}' style="font-size:22rpx;color:#666666;">{{item.num}}</text>
+    </view>
+    </view>
+  </view>
+</view>
+</view>
+</view></li>
+          </ul>
+        </dd>
+      </dl>
+    </view>
+  </view>
+</view>

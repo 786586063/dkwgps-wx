@@ -1,11 +1,11 @@
 {
   "pages": [
-   
     "pages/index/index",
+    "pages/upTerTo/upTerTo",
+    
     "pages/auth/reset/resetone/resetone",
     "pages/auth/reset/resetthree/resetthree",
     "pages/auth/login/login",
-    
     "pages/recharge/recharge",
     "pages/share/share",
     "pages/addterminal/addterminal",
@@ -20,8 +20,11 @@
     "pages/auth/reset/reset",
     "pages/wealfare/wealfare",
     "pages/rechargerecord/rechargerecord",
-    
-    "pages/auth/reset/resettwo/resettwo"
+    "pages/auth/reset/resettwo/resettwo",
+    "pages/left/fuli/fulicenter",
+    "pages/left/rechargerecord/rechargerecord",
+    "pages/left/shaixuan/shaixuan",
+    "pages/left/changepwd/changepwd"
     
   ],
   "window": {

@@ -7,7 +7,7 @@
       <text>{{usernike}}</text>
     </view>
     <view class='drawer-content'>
-      <navigator url='../rechargerecord/rechargerecord'>
+      <navigator url='../left/rechargerecord/rechargerecord'>
         <view class='content-row'>
           <view class='row-detail'>
             <image src='../../static/images/Recharge1_48px.png'></image>
@@ -18,7 +18,7 @@
           </view>
         </view>
       </navigator>
-      <navigator url='../wealfare/wealfare'>
+      <navigator url='../left/fuli/fulicenter'>
         <view class='content-row'>
           <view class='row-detail'>
             <image src='../../static/images/work_48px.png'></image>
@@ -29,7 +29,7 @@
           </view>
         </view>
       </navigator>
-      <navigator url='../auth/reset/reset'>
+      <navigator url='../left/changepwd/changepwd'>
         <view class='content-row'>
           <view class='row-detail'>
             <image src='../../static/images/lockopened_48px.png'></image>
@@ -55,10 +55,10 @@
             <image src='../../static/images/qq_48px.png'></image>
           </button>
 
-          <button class='shae_btn' open-type='share' >
+          <button class='shae_btn' open-type='share'>
             <image src='../../static/images/wechat_48px.png'></image>
           </button>
-          <button class='shae_btn'bindtap='drawerPic2Save' >
+          <button class='shae_btn' bindtap='drawerPic2Save'>
             <image src='../../static/images/friends_48px.png'></image>
           </button>
 
@@ -74,7 +74,7 @@
         <text>切换用户</text>
       </button>
     </view>
-    
+
   </view>
   <!-- <view class="bg" bindtap='hideview' style='display:{{display}}'></view> -->
   <!-- 主页 -->
@@ -111,9 +111,20 @@
           <cover-image class='one' src='../../static/images/Setup_btn.png'></cover-image>
           <cover-image class='one' src='../../static/images/details_btn.png' catchtap='nac_ter_detail'></cover-image>
           <cover-image class='one' src='../../static/images/Navigation_btn.png' bindtap='navigation'></cover-image>
-          <cover-image class='one' src='../../static/images/more_btn.png'></cover-image>
+          <cover-image class='one' src='../../static/images/more_btn.png' bindtap='more_btn'></cover-image>
         </cover-view>
 
+        <cover-view class='other' hidden='{{otherFunction}}'>
+          <cover-view class='one'>
+            <cover-image class='one' src='../../static/images/Traffic_normal_btn.png'></cover-image>
+            <cover-image class='one' src='../../static/images/PanoramicMap_btn.png' ></cover-image>
+          </cover-view>
+          <cover-view class='two'>
+            <cover-image class='one' src='../../static/images/transfer_btn.png' bindtap='transfer_btn'></cover-image>
+            
+          </cover-view>
+
+        </cover-view>
 
         <cover-view style='clear:both'></cover-view>
         <cover-view class='shrik_btn'>

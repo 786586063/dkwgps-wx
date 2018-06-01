@@ -1,0 +1,33 @@
+<view class="container">
+<view class="form-box">
+<view class="form-item">
+      <image class="inputBac" id="clear-password"  src="/static/images/Inputbox_510px@3x.png" catchtap="clearInput">
+      </image>
+      <image class="lock" src="/static/images/lock_old_30px.png" catchtap="clearInput">
+     </image> 
+     <input class="oldpassword" value="{{oldPassword}}" password bindinput="bindoldPasswordInput" placeholder="请输入旧密码"/>
+    </view>
+
+    <view class="form-item">
+      <image class="inputBactwo" id="clear-password"  src="/static/images/Inputbox_510px@3x.png" catchtap="clearInput">
+      </image>
+      <image class="locktwo" src="/static/images/lock_new_30px.png" catchtap="clearInput">
+     </image> 
+     <input class="password" value="{{Password}}" password bindinput="bindPasswordInput" placeholder="请输入新密码" />
+    </view>
+
+    <view class="form-item">
+      <image class="inputBacthree" id="clear-password"  src="/static/images/Inputbox_510px@3x.png" catchtap="clearInput">
+      </image>
+      <image class="lockthree" src="/static/images/lock_check_30px.png" catchtap="clearInput">
+     </image> 
+     <input class="repassword" value="{{confirmPassword}}" password bindinput="bindConfirmPasswordInput" placeholder="请确认新密码" />
+    </view>
+
+<view class="form-item"> 
+   <image class="buttonImg" id="confirmButton"  bindtap="startReset" src="/static/images/btn_332px_normal@3x.png" >
+   </image>
+<text class='reset-btn' bindtap="startReset">确\t认</text>
+</view>
+  </view>
+</view>

@@ -37,5 +37,6 @@ module.exports = {
     ResetPwdUserCheck: WxApiRoot +'Login/resetPwdUserCheck',
     ResetPwdYZM: WxApiRoot +'Login/resetPwdYZM',
     ResetPwdYZMCheck: WxApiRoot +'Login/resetPwdYZMCheck',
-    ResetPwd: WxApiRoot +'Login/resetPwd'
+    ResetPwd: WxApiRoot +'Login/resetPwd',
+    Bcx_upTerTo: WxApiRoot +'Terminal/bcx_upTerTo'
 };

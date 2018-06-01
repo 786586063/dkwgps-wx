@@ -300,15 +300,47 @@ border: none;
 }
 .middel_btn{
   position: absolute;
+
   top: 120rpx;
   right: 20rpx;
   width: 70rpx;
   height: auto;
   float: left;
 }
-.middel_btn image{
+.middel_btn cover-image{
   width: 70rpx;
   height: 70rpx;
+  margin-top: 0rpx;
+}
+.other{
+  position: absolute;
+    display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* margin-left: 30rpx; */
+  top: 347rpx;
+  right: 100rpx;
+  background: #ffffff;
+  width: 200rpx;
+  height: 200rpx;
+}
+.one{
+  display: flex;
+  flex-direction: row;
+}
+.two{
+  display: flex;
+  flex-direction: row;
+}
+.other .one cover-image{
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 0rpx;
+}
+.other .two cover-image{
+  width: 100rpx;
+  height: 100rpx;
   margin-top: 0rpx;
 }
 
